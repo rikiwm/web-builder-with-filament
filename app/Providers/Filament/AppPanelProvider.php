@@ -29,8 +29,9 @@ class AppPanelProvider extends PanelProvider
             ->id('app')
             ->path('app')
             ->login()
+            ->spa()
             ->colors([
-                'primary' => Color::Emerald,
+                'primary' => Color::Zinc,
             ])
             ->plugins([
                 FilamentPeekPlugin::make(),

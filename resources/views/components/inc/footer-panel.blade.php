@@ -27,9 +27,9 @@
 </footer>
  --}}
 
-@props(['content'=>''])
+@props(['content'=>'', 'class' => ''])
 
 
-<footer class="backdrop-blur-lg rounded-md">
+<footer class="backdrop-blur-lg rounded-md {{ $class }}">
 {{ $content }}
 </footer>

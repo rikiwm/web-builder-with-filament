@@ -14,7 +14,7 @@ class AppLayout extends Component
      */
     public function render(): View
     {
-        $nav = Cache::remember('nav_menu_app', 60*60, function () {
+        $nav = Cache::remember('nav_menu_app', 60, function () {
             return Menu::where('parent_id', null)
                 ->with('children')->where('is_active', true)
                 ->orderBy('order','asc')

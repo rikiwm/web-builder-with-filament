@@ -17,9 +17,9 @@ class MenuFactory
            case 'page':
                return new PageService();
                break;
-            case 'link':
-                return abort(404);
-                break;
+            // case 'link':
+            //     return abort(404);
+            //     break;
            default:
                throw new \Exception('Menu type not found');
                break;

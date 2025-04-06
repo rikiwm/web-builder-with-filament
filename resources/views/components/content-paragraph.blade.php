@@ -1,4 +1,4 @@
 @props(['content' => ''])
-<div class="prose ">
+<div class="prose">
     {!! $content !!}
 </div>

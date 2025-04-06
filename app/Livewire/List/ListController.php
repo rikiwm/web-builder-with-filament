@@ -12,6 +12,7 @@ class ListController extends Component
     public $title;
     public $data =[];
     public $menu_id = null;
+    public $model_view = null;
     public $limit = 3;
     public $dataobject = null;
     public function placeholder()

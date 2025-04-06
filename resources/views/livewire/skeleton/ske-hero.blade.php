@@ -15,8 +15,8 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 my-12 max-w-screen-xl mx-auto">
-                <div class=" h-[360px] bg-gray-200 rounded-xl dark:bg-zinc-900 w-full mb-6"></div>
-                <div class="col-span-2 h-[360px] bg-gray-200 rounded-xl dark:bg-zinc-900 w-full mb-6"></div>
+                {{-- <div class=" h-[360px] bg-gray-200 rounded-xl dark:bg-zinc-900 w-full mb-6"></div> --}}
+                <div class="col-span-3 h-[360px] bg-gray-200 rounded-xl dark:bg-zinc-900 w-full mb-6"></div>
             </div>
         </div>
 

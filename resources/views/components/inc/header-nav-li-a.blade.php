@@ -2,7 +2,7 @@
     'navtitle' => '',
     'child' => '',
     'rute' => '',
-    'active' => request()->url() == url($rute) ? 'text-green-900 font-bold' : 'text-green-700 font-normal',
+    'active' => request()->url() == url($rute) ? 'text-slate-950 dark:text-zinc-200 font-bold' : 'dark:text-slate-400 text-slate-700 font-normal',
     'class' => 'grid-cols',
 ])
 @php
@@ -10,22 +10,22 @@
     $place = $child->type == 'place' ? ($place = true) : false;
 @endphp
 <li class=" group">
-    <a @if (!$place || $rute == 'home') href="{{ url($rute) }}" @endif wire:navigate
-        class=" block px-3 py-2 {{ $active }} rounded md:bg-transparent
-     md:p-0 md:dark:text-green-500"
+    <a @if($child->type == 'link')  href="{{ url($rute) }}" target="_blank" @elseif (!$place || $rute == 'home' || $child->type == 'page' ) href="{{ url($rute) }}" wire:navigate  @endif 
+        class=" block px-3 py-2 {{ $active }} rounded md:bg-transparent text-sm
+     md:p-0"
         aria-current="{{ $rute }}">{{ $navtitle }}</a>
     @if ($child->children->isNotEmpty() && $place)
         <div
-            class="dropdown-content absolute left-0 right-0 justify-center mx-auto mt-6 w-full  max-w-screen-md  bg-white/60 dark:bg-black/80 backdrop-blur-md shadow-lg rounded-b-xl border border-t-0 border-zinc-700/50">
-            <div class="grid px-4 gap-4 py-6 mx-auto text-gray-900 dark:text-white md:{{ $class }} md:px-6">
+            class="dropdown-content absolute left-0 right-0 justify-center mx-auto mt-5 w-full  max-w-screen-md  bg-gray-100/80 dark:bg-black/80  shadow-lg rounded-b-xl ">
+            <div class="grid px-4 gap-4 py-4 mx-auto  text-gray-900 dark:text-white md:{{ $class }} md:px-6">
                 @forelse ($child->children as $c)
                     <ul>
                         <li>
                             <a href="{{ url($c->slug) }}" wire:navigate
-                                class="block p-3 rounded-lg hover:bg-gray-50/50 dark:hover:bg-green-700/20">
-                                <div class="font-semibold capitalize">{{ $c->name }}</div>
+                                class="block p-3 rounded-lg hover:bg-zinc-300/50 dark:hover:bg-zinc-100/20 ">
+                                <div class="font-light capitalize text-sm">{{ $c->name }}</div>
                                 <span
-                                    class="text-sm text-green-950 font-normal dark:text-gray-400">{{ $c->icon }}</span>
+                                    class="text-xs {{ $active }} font-normal dark:text-zinc-200">{{ $c->icon }}</span>
                             </a>
                         </li>
                     </ul>

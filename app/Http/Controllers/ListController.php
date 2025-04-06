@@ -16,7 +16,8 @@ class ListController extends Controller
             $data = Cache::remember("post_{$slug}", 60, function() use ($slug) {
                 return Post::with('user','categori','menu')->where('slug', $slug)->first();
             });
-           return view('page.show', compact('slug', 'data','title'));
+            $currentUrl = $data->menu->slug ?? '';
+           return view('page.show', compact('slug', 'data','title','currentUrl'));
         } catch (\Exception $e) {
             return response()->view('errors.custom', [], 500);
         }

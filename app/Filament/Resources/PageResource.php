@@ -22,6 +22,7 @@ use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Wizard;
+use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -29,6 +30,9 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Notifications\Notification;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
+use Illuminate\Support\HtmlString;
 
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Pboivin\FilamentPeek\Forms\Actions\InlinePreviewAction;
@@ -66,6 +70,9 @@ class PageResource extends Resource
                 RichEditor::make('content')
                     ->toolbarButtons(['bold', 'italic']),
             ]),
+            Block::make('image')->schema([
+              FileUpload::make('images')
+            ]),
 
         ])
             ->columnSpanFull()
@@ -78,7 +85,7 @@ class PageResource extends Resource
             ->schema([
                 Tabs::make('Tabs')->contained(false)
                 ->tabs([
-                    Tabs\Tab::make('Tab 1')
+                    Tabs\Tab::make('Setup')
                         ->schema([
                             Wizard::make([
                                 Wizard\Step::make('Name Menu')
@@ -113,21 +120,47 @@ class PageResource extends Resource
                                     ]),
                                 Wizard\Step::make('Content')
                                     ->schema([
-                                        TextInput::make('title'),
+                                        Fieldset::make('Title and Categori')
+                                        ->schema([
+                                            TextInput::make('title'),
+                                            Select::make('categori_id')->relationship('category', 'name')->preload()->searchable(),
+                                        ]),
+
                                         Hidden::make('created_by')->default(auth()->user()->id),
                                         Hidden::make('slug'),
-                                        DatePicker::make('publish_at'),
-                                        TextInput::make('is_active'),
-                                        Select::make('categori_id')->relationship('category', 'name')->preload()->searchable(),
+
+                                        Fieldset::make('Active and Publish')
+                                        ->schema([
+                                            DatePicker::make('publish_at')->label('Publish At'),
+                                            ToggleButtons::make('is_active')->boolean()->label('Is Active')->inline(),
+
+                                        ]),
                                     ]),
 
                             ])
                         ]),
-                    Tabs\Tab::make('Tab 2')
+                    Tabs\Tab::make('Value Content')
                         ->schema([
+                            Fieldset::make('Value Content')->schema([
+                                Select::make('layout')
+                                ->live(onBlur: true)->required()->afterStateUpdated(fn (Set $set, ?string $state) => $set('view', $state))
+                                ->options([
+                                    'default' => 'Default',
+                                    'model-1' => 'model-1',
+                                    'model-2' => 'model-2',
+                                    'model-3' => 'model-3',
+                                    'model-4' => 'model-4',
+                                    'model-5' => 'model-5',
+                                    'model-6' => 'model-6',
+                                ]),
+                                Placeholder::make('view')->live()
+                                ->content(fn (Get $get) => new HtmlString($get('layout'))),
+                            ]),
+                          
+
                             Actions::make([
                                 InlinePreviewAction::make()
-                                    ->label('Preview Content Blocks')
+                                    ->label('Live Preview')
                                     ->builderName('content'),
                             ])
                                 ->columnSpanFull()

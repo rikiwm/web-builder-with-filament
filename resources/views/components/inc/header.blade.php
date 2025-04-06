@@ -1,11 +1,11 @@
 @props(['data' => '', 'content' => ''])
-<nav
-    class="transition delay-100 duration-300 ease-in-out hover:bg-white/70 dark:hover:bg-black fixed z-30 w-full rounded-b-lg bg-gray-100/20 backdrop-blur-md border-b border-gray-200/10 dark:bg-black/50 dark:border-gray-900 py-3 px-5">
-    <div class="px-2 flex flex-wrap items-center justify-between mx-auto ">
+<nav  x-data="{ mobileMenuIsOpen: false }" x-on:click.away="mobileMenuIsOpen = false"
+    class="transition delay-100 duration-300 ease-in-out hover:bg-white/70 dark:hover:bg-black fixed z-30 w-full rounded-b-lg bg-gray-100/20 backdrop-blur-md border-b border-white/60 dark:bg-black/50 dark:border-gray-900 py-2 px-5">
+    <div class="px-0 flex flex-wrap items-center justify-between mx-auto ">
         <x-inc.header-logo />
-        <div class="flex items-center space-x-3 md:order-2 md:space-x-0 rtl:space-x-reverse">
+        <div class="flex items-center md:order-2 md:space-x-0 rtl:space-x-reverse">
             <button id="theme-toggle" class="px-4 py-2 ">
-                <svg class="w-6 h-6 text-green-800 dark:text-green-400" fill="none" viewBox="0 0 24 24"
+                <svg class="w-6 h-6 text-sky-950 dark:text-zinc-400" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
@@ -36,8 +36,60 @@
                     Masuk
                 </span> --}}
             @endauth
-            <button id="menu-btn" class="md:hidden text-lg dark:text-white focus:outline-none">☰</button>
+            {{-- <button id="menu-btn" class="md:hidden text-lg dark:text-white focus:outline-none">☰</button> --}}
+            <button x-on:click="mobileMenuIsOpen = !mobileMenuIsOpen" x-bind:aria-expanded="mobileMenuIsOpen" 
+            x-bind:class="mobileMenuIsOpen ? 'fixed top-4 right-4 z-20' : null" type="button" 
+            class="flex text-on-surface dark:text-on-surface-dark md:hidden" aria-label="mobile menu" aria-controls="mobileMenu">
+                <svg x-cloak x-show="!mobileMenuIsOpen" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-6 dark:text-white">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+                <svg x-cloak x-show="mobileMenuIsOpen" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" 
+                class="size-6 ms-auto dark:text-white"> ">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                </svg>
+            </button>
+            
+    
         </div>
+
+        <ul x-cloak x-show="mobileMenuIsOpen" 
+        x-transition:enter="transition motion-reduce:transition-none ease-out duration-300" 
+        x-transition:enter-start="-translate-y-full" x-transition:enter-end="translate-y-0" 
+        x-transition:leave="transition motion-reduce:transition-none ease-out duration-300" 
+        x-transition:leave-start="translate-y-0" x-transition:leave-end="-translate-y-full" id="mobileMenu"
+         class="bg-white dark:bg-black mx-auto space-y-4 fixed max-h-svh overflow-y-auto inset-x-2 top-0 z-10 flex flex-col 
+         rounded-b-xl border-b border-outline bg-surface-alt px-6 pb-6 pt-20
+          dark:bg-surface-dark-alt md:hidden" >
+            @foreach ($data as $item)
+            <li class=" group">
+                @php
+                    $place = $item->children;
+                @endphp
+
+                <div x-data="{ open: false }">
+                    <a  @if ($item->type == 'place' && $place->isNotEmpty()) x-on:click="open = ! open" @else href="{{ $item->slug }}" @endif class="hover:text-gray-500 dark:text-gray-100">{{ $item->name }}</a>
+                    <div x-show="open"
+                    x-transition:enter="transition ease-out duration-200"
+                    x-transition:enter-start="opacity-0 scale-90"
+                    x-transition:enter-end="opacity-100 scale-100"
+                    x-transition:leave="transition ease-in duration-100"
+                    x-transition:leave-start="opacity-100 scale-100"
+                    x-transition:leave-end="opacity-0 scale-90">
+                        <div class="ms-4 bg-white/80 dark:bg-transparent dark:backdrop-blur-md rounded-md py-2">
+                            @forelse ($item->children as $c)
+                            <a href="{{ $c->slug }}" wire:navigate class="block p-2 mx-auto rounded-lg hover:bg-gray-50 dark:hover:bg-green-950/20">
+                                <span class="text-md text-black/90 font-normal dark:text-gray-400">{{ $c->name }}</span>
+                            </a>
+                            @empty
+                            @endforelse
+                        </div>
+                    </div>
+                </div>
+
+            </li>
+
+            @endforeach
+        </ul>
         <x-inc.header-nav>
             <x-slot name="navbar">
                 <x-inc.header-nav-li>
@@ -51,14 +103,18 @@
             </x-slot>
         </x-inc.header-nav>
 
-        <div id="mobile-menu"
+
+ 
+
+
+        {{-- <div id="mobile-menu"
             class="absolute z-40 inset-0  bg-white dark:bg-black -translate-y-96 md:hidden  items-center justify-items-start text-xl ">
-            <div class="flex flex-row justify-between mx-auto p-3">
-                <span class="text-3xl text-black dark:text-white ">{{ config('app.name', 'Laravel') }}</span>
-                <button id="close-btn" class=" text-lg text-black dark:text-white float-end mx-2">&times;</button>
+            <div class="flex flex-row justify-between mx-auto  py-2">
+                <span class="text-3xl font-extrabold text-black dark:text-white mx-4">{{ config('app.name', 'Laravel') }}</span>
+                <button id="close-btn" class=" text-xl text-black dark:text-white float-end mx-4 me-4">&times;</button>
             </div>
-            <div class=" bg-white dark:bg-black mx-auto py-12 px-4 rounded-bl-3xl">
-                <ul class="space-y-4 ">
+            <div class=" bg-white dark:bg-black mx-auto py-4 mb-4 px-4 rounded-b-3xl">
+                <ul class="space-y-3 ">
                     @foreach ($data as $item)
                     <li class=" group">
                         @php
@@ -68,10 +124,10 @@
                         <div x-data="{ open: false }">
                             <a  @if ($item->type == 'place' && $place->isNotEmpty()) x-on:click="open = ! open" @else href="{{ $item->slug }}" @endif class="hover:text-gray-500 dark:text-gray-100">{{ $item->name }}</a>
                             <div x-show="open"
-                            x-transition:enter="transition ease-out duration-300"
+                            x-transition:enter="transition ease-out duration-200"
                             x-transition:enter-start="opacity-0 scale-90"
                             x-transition:enter-end="opacity-100 scale-100"
-                            x-transition:leave="transition ease-in duration-300"
+                            x-transition:leave="transition ease-in duration-100"
                             x-transition:leave-start="opacity-100 scale-100"
                             x-transition:leave-end="opacity-0 scale-90">
                                 <div class="ms-4 bg-white/80 dark:bg-transparent dark:backdrop-blur-md rounded-md py-2">
@@ -91,10 +147,11 @@
                 </ul>
 
             </div>
-        </div>
+        </div> --}}
 </nav>
-{{--
-<nav x-data="{ mobileMenuIsOpen: false }" x-on:click.away="mobileMenuIsOpen = false" class="flex items-center justify-between border-b border-outline px-6 py-4 dark:border-outline-dark" aria-label="penguin ui menu">
+
+{{-- <nav x-data="{ mobileMenuIsOpen: false }" x-on:click.away="mobileMenuIsOpen = false" 
+class="flex items-center justify-between border-b border-outline px-6 py-4 dark:border-outline-dark" aria-label="penguin ui menu">
 	<!-- Brand Logo -->
 	<a href="#" class="text-2xl font-bold text-on-surface-strong dark:text-on-surface-dark-strong">
 		<span>Peng<span class="text-primary dark:text-primary-dark">ui</span>n</span>

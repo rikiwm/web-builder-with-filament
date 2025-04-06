@@ -1,7 +1,8 @@
+{{-- @props(['model_view' => '']) --}}
 <x-layouts.guest class="">
 
     <div class="py-4  text-black/50 dark:text-white/50">
-        <div class=" min-h-screen
+        <div class=" min-h-screen mt-12 lg:mt-0
         selection:bg-[#03A56A] selection:text-white">
             <div class=" w-full px-4 ">
                 <main class="py-12">
@@ -25,16 +26,16 @@
                         <x-slot name=slider>
                             <div class="py-2 md:py-0 w-full max-w-screen-2xl mx-auto ">
                                 <div
-                                    class="border w-full  border-gray-200/20 dark:border-zinc-900 rounded-[14px] p-0 md:p-2 mb-2 px-4">
+                                    class="w-full p-0 md:p-2 mb-2 px-4">
                                     <div class="swiper mySwiper rounded-xl relative w-full" >
                                         <div class="swiper-wrapper  h-56  rounded-lg md:h-96">
                                             <div class="swiper-slide  text-white text-center">
                                                   <img src="{{ asset('frontend/bg-toska.jpg') }}" loading="lazy"
-                                                    class="relative block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="asd">
+                                                    class="relative block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 bg-cover bg-gray-400 bg-blend-overlay saturate-0 hover:saturate-50" alt="asd">
                                             </div>
                                             <div class="swiper-slide  text-white text-center">
                                                 <img src="{{ asset('frontend/bg-toska.jpg') }}" loading="lazy"
-                                                  class="relative block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="asd">
+                                                class="relative block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 bg-cover bg-gray-400 bg-blend-overlay saturate-0 hover:saturate-50" alt="asd">
 
                                           </div>
                                         </div>
@@ -49,8 +50,7 @@
                         </x-slot>
 
                     </x-page.section-slide>
-
-                    <livewire:list.list-controller :title="$title" :dataobject="collect($data)" />
+                    <livewire:list.list-controller :title="$title" :dataobject="collect($data)" model_view="{{ $model_view ?? 'asd' }}" />
                 </main>
             </div>
         </div>

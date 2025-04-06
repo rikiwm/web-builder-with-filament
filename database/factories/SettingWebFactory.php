@@ -17,7 +17,8 @@ class SettingWebFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'key' => fake()->name(),
+            'status' => true,
         ];
     }
 }

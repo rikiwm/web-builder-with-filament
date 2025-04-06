@@ -68,11 +68,19 @@ class MenuResource extends Resource
                             Select::make('icon')->options(Iconset::icon())->searchable(),
 
                             // Hidden::make('slug'),
-                            TextInput::make('slug')->label('Route / Link / Slug ')->suffix('.com')->placeholder('jika link maka manual url')
+                            TextInput::make('slug')->label('Route / Link / Slug ')
+                            ->suffix('.com')->placeholder('jika link maka manual url')
                             ->readOnly(fn (Get $get) => $get('type') !== 'link')
                             ->live(),
+                            Select::make('model_view')->options([
+                                'card' => 'card',
+                                'tabel' => 'tabel',
+                            ])
+                            ->disabled(fn (Get $get) => $get('type') !== 'list')
+                            ->searchable()->label('List Card / Table ')->suffix('view')
+                            ->placeholder('jika link maka manual url'),
                                 ])->grow(false),
-                                ])
+                            ])
 
 
             ]);

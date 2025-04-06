@@ -20,6 +20,7 @@ use Filament\Forms\Components\Split;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Wizard;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
@@ -104,20 +105,26 @@ class PostResource extends Resource
                         ]),
                     Wizard\Step::make('Description')
                         ->schema([
-                            TextInput::make('title')->live(onBlur: true)->required()
-                            ->columnSpanFull()->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
-                            TextInput::make('sub_title'),
+                            Section::make('Heading')
+                                ->description('')
+                                ->schema([
+                                    TextInput::make('title')->live(onBlur: true)->required()
+                                    ->columnSpanFull()->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
+                                    TextInput::make('sub_title')->label('Short Title'),
+                                Select::make('categori_id')->relationship('categori', 'name')->preload()->searchable(),
+                                    
+                                ])
+                                ->columns(2),
                             Hidden::make('created_by')->default(auth()->user()->id),
                             Hidden::make('slug'),
-                            DatePicker::make('published_at')->required(),
-                            Select::make('categori_id')->relationship('categori', 'name')->preload()->searchable(),
+                      
                             // RichEditor::make('content')->columnSpanFull()->required(),
                         ])->columns(2),
                     Wizard\Step::make('Content')
                         ->schema([
                             Actions::make([
                                 InlinePreviewAction::make()
-                                    ->label('Preview Content Blocks')
+                                    ->label('Live Preview Content')
                                     ->builderName('content'),
                             ])
                                 ->columnSpanFull()
@@ -132,9 +139,11 @@ class PostResource extends Resource
                     ->schema([
                         Toggle::make('is_active')->required(),
                         Toggle::make('is_featured'),
+                        DatePicker::make('published_at')->label('Published')->required()->inlineLabel(),
+
                         // DateTimePicker::make('published_at')
                         // ->hidden(fn (Get $get) => $get('status') !== 'published'),
-                    ])->grow(false),
+                    ])->grow(true)->columns(4),
                 ])->from('md'),
 
             ]);

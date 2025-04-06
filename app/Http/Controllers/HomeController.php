@@ -31,7 +31,10 @@ class HomeController extends Controller
     {
 
         $hero = cache()->remember('setting_hero', 60*60, function () {
-            return SettingWeb::query()->where('key','Hero Section')->first();
+            return SettingWeb::query()->where('key','hero-section')->first();
+        });
+        $welcome = cache()->remember('setting_welcome', 60*60, function () {
+            return SettingWeb::query()->where('key','welcome')->first();
         });
 
         $section = cache()->remember('section', 1, function() {
@@ -40,6 +43,7 @@ class HomeController extends Controller
         return view('welcome',[
             'hero' => $hero,
             'section' => $section,
+            'welcome' => $welcome,
         ]);
     }
 
@@ -80,8 +84,9 @@ class HomeController extends Controller
         return view($data['view'],
             [
                 'category' => $category ?? null,
-                'title' => $data['title'],
-                'data' => $data['data'],
+                'title' => $data['title'] ?? '',
+                'data' => $data['data'] ?? null,
+                'model_view' => $menu['model_view'] ?? null,
             ]
         );
     }

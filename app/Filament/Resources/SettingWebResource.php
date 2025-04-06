@@ -13,6 +13,7 @@ use Filament\Forms\Components\Builder as ComponentsBuilder;
 use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -33,7 +34,7 @@ class SettingWebResource extends Resource
         return $form
         ->schema([
             Fieldset::make('Setup')->schema([
-                TextInput::make('key')->required()->label('Title')->placeholder('title'),
+                TextInput::make('key')->required()->label('Key')->placeholder('title'),
                 ToggleButtons::make('status')->boolean()->label('Is Active')->inline(),
                 ComponentsBuilder::make('value')
                 ->blocks([
@@ -45,14 +46,30 @@ class SettingWebResource extends Resource
                         Select::make('model-view')
                             ->label('Model View')
                             ->options([
-                                'berita' => 'View Berita',
-                                'peringatan' => 'View Peringatan',
-                                'data' => 'View Data',
+                                'carousel' => 'View carousel',
+                                'card' => 'View card',
+                                'list' => 'View list',
+                                'widget' => 'View widget',
+                                'table' => 'View table',
+                                'grid' => 'View grid',
+                                'list-card' => 'View list card',    
                             ])
                             ->required(),
                     ])
                     ->columns(2),
+                    Block::make('Gambar')
+                    ->schema([
+                     
+                        FileUpload::make('gambar')
+                            ->label('Gambar')
+                            ->required()
+                            ->preserveFilenames()
+                            ->directory('setting-web-gambar')
+                            ->enableOpen()
+                    ])
+                    ->columns(1),
                     Block::make('heading')
+                        ->label('Title')
                         ->schema([
                             TextInput::make('content')
                                 ->label('Title')
