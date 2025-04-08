@@ -21,6 +21,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Wizard;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Form;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
@@ -61,12 +62,19 @@ class PostResource extends Resource
                 ]),
 
             ]),
-
-                Block::make('paragraph')->schema([
+            Block::make('paragraph')->schema([
                 RichEditor::make('content')
                     ->toolbarButtons(['bold', 'italic']),
             ]),
-
+            Block::make('image')->schema([
+                FileUpload::make('content')
+                ->disk('public')
+                ->label('Image / File')
+                ->maxFiles(2)
+                ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp','application/pdf','application/docx'])
+                ->directory('post_image')
+                ->visibility('public')
+            ]),
         ])
             ->columnSpanFull()
             ->collapsible();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categori;
 use App\Models\Menu;
 use App\Models\SettingWeb;
+use App\Models\Post;
 use App\Service\Menu\MenuFactories\MenuFactory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -40,10 +41,24 @@ class HomeController extends Controller
         $section = cache()->remember('section', 1, function() {
             return SettingWeb::query()->where('status', '1')->where('key','section-1')->first();
         });
+        $berita = cache()->remember('berita', 60, function() {
+            return Post::query()->where('is_active', '1')
+                ->where('menu_id', '4')
+                ->orderBy('created_at', 'desc')
+                ->take(3)
+                ->get();
+        });
+
+        $team = cache()->remember('setting_team', 1, function() {
+            return SettingWeb::query()->where('status', '1')->where('key','team-section')->first();
+        });
+
         return view('welcome',[
             'hero' => $hero,
             'section' => $section,
             'welcome' => $welcome,
+            'berita' => $berita,
+            'team' => $team,
         ]);
     }
 

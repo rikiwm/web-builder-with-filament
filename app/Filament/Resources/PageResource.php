@@ -71,7 +71,13 @@ class PageResource extends Resource
                     ->toolbarButtons(['bold', 'italic']),
             ]),
             Block::make('image')->schema([
-              FileUpload::make('images')
+              FileUpload::make('images')->label('Image / File')
+                    ->disk('public')
+                    ->directory('page_image')
+                    ->visibility('public')
+                    ->maxFiles(1)
+                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp','application/pdf','application/docx'])
+                    ->maxSize(1024)
             ]),
 
         ])

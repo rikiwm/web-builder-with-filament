@@ -6,12 +6,12 @@
                 <x-home.section>
                     <x-slot name="content">
                         <livewire:home.home-component :hero="$hero" />
-{{-- @dd($welcome) --}}
-                        <div class="py-4 px-4 w-full max-w-screen-xl mx-auto text-center -mt-12">
+                        <div class="py-4 px-4 w-full lg:max-w-screen-xl mx-auto text-center -mt-12 lg:-mt-16">
                             <div class="lg:pb-20">
-                                <div class="mx-auto max-w-7xl py-2   ">
-                                    <div
-                                        class="relative isolate overflow-hidden bg-gradient-to-t dark:bg-gradient-to-b to-zinc-200 dark:to-zinc-950 from-transparent dark:from-zinc-400/40 px-6 pt-12 pb-12 lg:pb-0 shadow-md rounded-xl sm:px-16 py-12 md:pt-0 lg:flex lg:gap-x-12 lg:px-12 lg:pt-4 justify-between items-top">
+                                <div class="mx-auto max-w-7xl   ">
+                                    <div class="relative isolate overflow-hidden bg-gradient-to-t dark:bg-gradient-to-b to-zinc-50 dark:to-zinc-950
+                                         from-transparent dark:from-zinc-400/40 px-6 pt-12
+                                         lg:pb-0 shadow-md rounded-xl lg:rounded-3xl sm:px-16 py-12 md:pt-16 lg:flex lg:gap-x-12 lg:px-12 justify-between items-top">
                                         <svg viewBox="0 0 1024 1024"
                                             class="absolute top-1/2 left-1/2 -z-10 size-[64rem] -translate-y-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:left-full sm:-ml-80 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2 lg:translate-y-0"
                                             aria-hidden="true">
@@ -30,42 +30,41 @@
                                                 class="text-xl font-semibold tracking-tight text-zinc-900 text-balance dark:text-white sm:text-4xl">
                                                 {{  $welcome['value'][0]['data']['content'] ?? 'content' }} 
                                               </h2>
-                                            <p class="mt-6 text-lg/6 text-pretty text-zinc-900 dark:text-gray-300">
+                                            <p class="mt-6 text-sm lg:text-lg/6 text-pretty text-zinc-900 dark:text-gray-300">
                                               {{  $welcome['value'][0]['data']['sub_content'] ?? 'sub_content' }} 
                                             </p>
-                                            <div class="mt-3 flex items-center justify-center gap-x-2 lg:justify-start">
+                                            <div class="mt-6 flex items-center justify-center gap-x-2 lg:justify-start">
                                                 <a href="#"
                                                     class="text-xs/4 font-semibold text-slate-700 dark:text-white">Selengkapnya
                                                     <span aria-hidden="true">→</span></a>
                                             </div>
                                         </div>
                                         <div
-                                            class=" max-w-screen-sm mt-16 lg:mt-8 lg:mx-0 mx-auto flex flex-col items-center justify-center size-32 ">
+                                            class=" max-w-screen-sm mt-8 lg:mt-8 lg:mx-0 mx-auto lg:flex lg:flex-col lg:py-2  size-32 ">
                                             <!-- ========== Start img and name ========== -->
                                             {{-- {{  $welcome['value'][0]['data']['sub_content'] ?? 'sub_content' }}  --}}
                                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Prabowo_Subianto_2024_official_portrait.jpg/500px-Prabowo_Subianto_2024_official_portrait.jpg"
                                                 class="object-cover transition duration-700 ease-out group-hover:scale-105 rounded-md bg-white/5 ring-1 ring-white/10 saturate-0 hover:saturate-50 mb-2"
                                                 alt="view of a coastal Mediterranean village on a hillside, with small boats in the water." />
                                             <a href="#"
-                                                class="text-xs line-clamp-4 font-semibold text-zinc-900 dark:text-white pb-12">Jhon
+                                                class="text-xs text-zinc-900 dark:text-white ">Jhon
                                                 Key, S.Sos., MM (Kepala Dinas Komunikasi dan Informatika <span
                                                     aria-hidden="true">→</span></a>
                                             
                                             <!-- ========== End img and name ========== -->
                                             
-
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-
+{{-- @dd() --}}
                         <div class="py-4 lg:py-8 px-4 w-full max-w-screen-2xl mx-auto text-center ">
                             <div class="mb-4 -mt-2">
                                 <div
                                     class="border border-zinc-200/50 dark:border-gray-700/40 dark:border-b-0 lg:mx-12  rounded-[16px] p-1 lg:p-4 md:p-8 mb-8">
-                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 ">
+                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-2 ">
                                         <div
                                             class=" border border-gray-200 dark:border-zinc-800 rounded-xl p-4 md:p-6 bg-gradient-to-t to-zinc-200 dark:to-zinc-950 from-transparent text-medium text-gray-500 dark:text-gray-400 dark:bg-zinc-800/50 rounded-xl w-full ">
                                             <!-- ========== Start Agenda ========== -->
@@ -156,38 +155,40 @@
                                             <!-- ========== End Agenda ========== -->
 
                                             <!-- ========== Start Section ========== -->
-                                            <div
-                                                class="group  flex max-w-md flex-col text-on-surface 
-                                             dark:text-on-surface-dark">
+                                            <div class="group  flex max-w-md flex-col text-on-surface dark:text-on-surface-dark">
                                                 <div>
-                                                    <h2
-                                                        class="text-sky-950 text-start dark:text-white text-xl font-extrabold mb-2">
+                                                    <h2 class="text-sky-950 text-start dark:text-white text-xl font-extrabold mb-2">
                                                         Populer</h2>
-                                                    <hr
-                                                        class="w-full rounded-xl h-1 my-4 bg-gray-100 border-0 rounded-sm dark:bg-gray-700" />
+                                                    <hr class="w-full rounded-xl h-1 my-4 bg-gray-100 border-0 rounded-sm dark:bg-gray-700" />
                                                 </div>
                                                 <ul role="list" class="divide-y divide-gray-100">
-                                                    <li class="flex justify-between gap-x-6 py-5">
+                                                    @forelse ($berita as $b)
+                                                  <x-list.partials.widget-list>
+                                                    <x-slot name="content">
+                                                        <a href="{{ route('post.detail', $b->slug) }}" target="_blank" rel="noopener noreferrer">
                                                         <div class="flex min-w-0 gap-x-4">
-                                                            <img class="size-16 flex-none rounded-md object-cover"
-                                                                src="https://padang.go.id/assets/frontend/img/bg/balaikota.webp"
-                                                                alt="">
-                                                            <p
-                                                                class="text-xs/5 text-gray-900 text-start line-clamp-3 dark:text-white">
-                                                                Co-Founder / CEO Lorem ipsum dolor sit amet consectetur
-                                                                adipisicing elit. Culp</p>
-                                                        </div>
-                                                        <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-
-                                                            <p class="mt-1 text-xs/4 text-gray-500">View <time
+                                                                <img class="size-16 flex-none rounded-md object-cover"
+                                                                    src="https://padang.go.id/assets/frontend/img/bg/balaikota.webp"
+                                                                    alt="">
+                                                                <p class="text-xs/5 text-gray-900 text-start line-clamp-3 dark:text-white">
+                                                                {{ $b->title }}    
+                                                                </p>
+                                                            </div>
+                                                        </a>
+                                                            <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+                                                                
+                                                                <p class="mt-1 text-xs/4 text-gray-500">View <time
                                                                     datetime="2023-01-23T13:23Z">44</time></p>
-                                                            <p class="mt-2 text-xs/4 text-gray-500">Last seen <time
-                                                                    datetime="2023-01-23T13:23Z">3h ago</time></p>
-                                                        </div>
-                                                    </li>
-
+                                                                    <p class="mt-2 text-xs/4 text-gray-500">Last seen <time
+                                                                        datetime="2023-01-23T13:23Z">3h ago</time></p>
+                                                                    </div>
+                                                                </x-slot>
+                                                  </x-list.partials.widget-list>    
+                                                    @empty
+                                                        
+                                                    @endforelse
+                                               
                                                 </ul>
-
                                             </div>
 
                                             <!-- ========== End Section ========== -->
@@ -231,9 +232,9 @@
                                         class="pointer-events-none lg:absolute lg:mx-auto w-full max-w-xl">
                                         <div
                                             class="relative transform sm:top-0 sm:left-0 sm:translate-x-8 lg:top-0 lg:left-0 lg:-translate-y-1/2 lg:translate-x-8">
-                                            <div class="flex items-center justify-center space-x-6 lg:space-x-8">
+                                            <div class="flex items-center justify-center space-x-4 lg:space-x-4">
 
-                                                <div class="grid shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
+                                                <div class="grid shrink-0 grid-cols-1 gap-y-4 lg:gap-y-4">
                                                     <div class="h-64 w-44 overflow-hidden rounded-lg">
                                                         <img src="https://padang.go.id/assets/frontend/img/bg/balaikota.webp"
                                                             alt="" class="size-full object-cover">
@@ -247,7 +248,7 @@
                                                             alt="" class="size-full object-cover">
                                                     </div>
                                                 </div>
-                                                <div class="grid shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
+                                                <div class="grid shrink-0 grid-cols-1 gap-y-4 lg:gap-y-4">
                                                     <div class="h-64 w-44 overflow-hidden rounded-lg">
                                                         <img src="https://padang.go.id/assets/frontend/img/bg/balaikota.webp"
                                                             alt="" class="size-full object-cover">
@@ -257,7 +258,7 @@
                                                             alt="" class="size-full object-cover">
                                                     </div>
                                                 </div>
-                                                <div class="grid shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
+                                                <div class="grid shrink-0 grid-cols-1 gap-y-4 lg:gap-y-4">
                                                     <div class="h-64 w-66  overflow-hidden rounded-lg">
                                                         <img src="https://padang.go.id/assets/frontend/img/bg/balaikota.webp"
                                                             alt="" class="size-full object-cover">
@@ -271,7 +272,7 @@
                                                             alt="" class="size-full object-cover">
                                                     </div>
                                                 </div>
-                                                <div class="grid shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
+                                                <div class="grid shrink-0 grid-cols-1 gap-y-4 lg:gap-y-4">
                                                     <div class="h-64 w-44 overflow-hidden rounded-lg">
                                                         <img src="https://padang.go.id/assets/frontend/img/bg/balaikota.webp"
                                                             alt="" class="size-full object-cover">
@@ -281,31 +282,7 @@
                                                             alt="" class="size-full object-cover">
                                                     </div>
                                                 </div>
-                                                <div class="grid shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                                                    <div class="h-64 w-44 overflow-hidden rounded-lg">
-                                                        <img src="https://padang.go.id/assets/frontend/img/bg/balaikota.webp"
-                                                            alt="" class="size-full object-cover">
-                                                    </div>
-                                                    <div class="h-64 w-44 overflow-hidden rounded-lg">
-                                                        <img src="https://padang.go.id/assets/frontend/img/bg/balaikota.webp"
-                                                            alt="" class="size-full object-cover">
-                                                    </div>
-                                                    <div class="h-64 w-44 overflow-hidden rounded-lg">
-                                                        <img src="https://padang.go.id/assets/frontend/img/bg/balaikota.webp"
-                                                            alt="" class="size-full object-cover">
-                                                    </div>
-                                                </div>
-                                                <div class="grid shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                                                    <div class="h-64 w-44 overflow-hidden rounded-lg">
-                                                        <img src="https://padang.go.id/assets/frontend/img/bg/balaikota.webp"
-                                                            alt="" class="size-full object-cover">
-                                                    </div>
-                                                    <div class="h-64 w-44 overflow-hidden rounded-lg">
-                                                        <img src="https://padang.go.id/assets/frontend/img/bg/balaikota.webp"
-                                                            alt="" class="size-full object-cover">
-                                                    </div>
-                                                </div>
-                                                <div class="grid shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
+                                                <div class="grid shrink-0 grid-cols-1 gap-y-4 lg:gap-y-4">
                                                     <div class="h-64 w-44 overflow-hidden rounded-lg">
                                                         <img src="https://padang.go.id/assets/frontend/img/bg/balaikota.webp"
                                                             alt="" class="size-full object-cover">
@@ -319,7 +296,31 @@
                                                             alt="" class="size-full object-cover">
                                                     </div>
                                                 </div>
-                                                <div class="grid shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
+                                                <div class="grid shrink-0 grid-cols-1 gap-y-4 lg:gap-y-4">
+                                                    <div class="h-64 w-44 overflow-hidden rounded-lg">
+                                                        <img src="https://padang.go.id/assets/frontend/img/bg/balaikota.webp"
+                                                            alt="" class="size-full object-cover">
+                                                    </div>
+                                                    <div class="h-64 w-44 overflow-hidden rounded-lg">
+                                                        <img src="https://padang.go.id/assets/frontend/img/bg/balaikota.webp"
+                                                            alt="" class="size-full object-cover">
+                                                    </div>
+                                                </div>
+                                                <div class="grid shrink-0 grid-cols-1 gap-y-4 lg:gap-y-4">
+                                                    <div class="h-64 w-44 overflow-hidden rounded-lg">
+                                                        <img src="https://padang.go.id/assets/frontend/img/bg/balaikota.webp"
+                                                            alt="" class="size-full object-cover">
+                                                    </div>
+                                                    <div class="h-64 w-44 overflow-hidden rounded-lg">
+                                                        <img src="https://padang.go.id/assets/frontend/img/bg/balaikota.webp"
+                                                            alt="" class="size-full object-cover">
+                                                    </div>
+                                                    <div class="h-64 w-44 overflow-hidden rounded-lg">
+                                                        <img src="https://padang.go.id/assets/frontend/img/bg/balaikota.webp"
+                                                            alt="" class="size-full object-cover">
+                                                    </div>
+                                                </div>
+                                                <div class="grid shrink-0 grid-cols-1 gap-y-4 lg:gap-y-4">
                                                     <div class="h-64 w-44 overflow-hidden rounded-lg">
                                                         <img src="https://padang.go.id/assets/frontend/img/bg/balaikota.webp"
                                                             alt="" class="size-full object-cover">
@@ -393,73 +394,65 @@
                             </div> --}}
             </div>
             <div class="py-2 mx-auto max-w-screen lg:py-8 ">
-                <div class="swiper cardSlider" data-xs="2" data-lg="5">
+           
+                @php
+                    $data = 0;
+                    $count = count($team['value']);
+                    if ($count >= 6) {
+                        $data = 4;
+                    }else {
+                        $data = $count;
+                    }
+                @endphp
+                <div class="swiper cardSlider" data-xs="2" data-lg="{{ $data }}">
                     <div class="swiper-wrapper">
-                        @for ($i = 0; $i < 5; $i++)
-                            <div class="swiper-slide">
-                                <div
-                                    class=" border border-gray-100 dark:border-gray-800 rounded-xl p-2 md:p-2 dark:backdrop-blur-sm">
+                        @forelse ($team['value'] as $t)
+                        <div class="swiper-slide">
+                            <div
+                                class=" border border-gray-100 dark:border-gray-800 rounded-xl p-2 md:p-2 dark:backdrop-blur-sm">
+                                <div class=" mx-auto overflow-hidden  lg:p-2 p-4">
+                                    <img src="{{ url('storage/' . $t['data']['images']) }}"
+                                        class="rounded-lg h-52 object-cover w-full  transition duration-700 ease-out group-hover:scale-105"
+                                        alt="avatar" />
+                                </div>
+                                <!-- Body -->
+                                <div class="flex flex-col gap-1 p-1 text-center mt-0">
+                                    <h3 class="text-balance text-md font-bold text-on-surface-strong lg:text-2xl dark:text-on-surface-dark-strong"
+                                        aria-describedby="profileDescription">{{ $t['data']['name']}}</h3>
+                                    <span class="mx-auto w-fit  text-xs text-on-primary dark:bg-primary-dark dark:text-on-primary-dark rounded-radius">
+                                        {{ $t['data']['title']}}
+                                    </span>
+                                    <div class=" flex items-center justify-end gap-3 opacity-50  mt-6">
+                                        <!-- Email -->
+                                        <a href="mailto:{{ $t['data']['mail'] }}"
+                                            class="text-sky-950 hover:text-primary dark:text-on-surface-dark dark:hover:text-primary-dark"
+                                            aria-label="email">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                fill="currentColor" aria-hidden="true" class="size-5 shrink-0">
+                                                <path
+                                                    d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
+                                                <path
+                                                    d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z" />
+                                            </svg>
+                                        </a>
+                                        <!-- Instagram -->
+                                        <a href="https://www.instagram.com" target="_blank"
+                                            class="text-pink-800 hover:text-primary dark:text-on-surface-dark dark:hover:text-primary-dark"
+                                            aria-label="instagram">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
+                                                fill="currentColor" aria-hidden="true" class="size-4 shrink-0">
+                                                <path
+                                                    d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334" />
+                                            </svg>
+                                        </a>
 
-                                    <div class=" mx-auto overflow-hidden  lg:p-2 p-4">
-                                        {{-- <span class=" size-48 items-center justify-center overflow-hidden rounded-xl bg-surface-alt text-on-surface/50 dark:border-outline-dark dark:bg-surface-dark-alt dark:text-on-surface-dark/50">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"  class="w-full h-full mt-3 ">
-                                                            <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clip-rule="evenodd"/>
-                                                        </svg>
-                                                    </span> --}}
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Prabowo_Subianto_2024_official_portrait.jpg/500px-Prabowo_Subianto_2024_official_portrait.jpg"
-                                            class="rounded-lg h-full object-cover w-full transition duration-700 ease-out group-hover:scale-105"
-                                            alt="avatar" />
-                                    </div>
-                                    <!-- Body -->
-                                    <div class="flex flex-col gap-1 p-1 text-center mt-0">
-                                        <h3 class="text-balance text-md font-bold text-on-surface-strong lg:text-2xl dark:text-on-surface-dark-strong"
-                                            aria-describedby="profileDescription">Alice Brown</h3>
-                                        <span
-                                            class="mx-auto w-fit 
-                                                    text-xs text-on-primary dark:bg-primary-dark dark:text-on-primary-dark rounded-radius">
-                                            Title Work</span>
-
-                                        <div class=" flex items-center justify-end gap-3 opacity-50  mt-6">
-
-                                            <!-- Email -->
-                                            <a href="mailto:youremailaddress@email.com"
-                                                class="text-on-surface hover:text-primary dark:text-on-surface-dark dark:hover:text-primary-dark"
-                                                aria-label="email">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                    fill="currentColor" aria-hidden="true" class="size-5 shrink-0">
-                                                    <path
-                                                        d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
-                                                    <path
-                                                        d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z" />
-                                                </svg>
-                                            </a>
-
-                                            <!-- Instagram -->
-                                            <a href="https://www.instagram.com" target="_blank"
-                                                class="text-on-surface hover:text-primary dark:text-on-surface-dark dark:hover:text-primary-dark"
-                                                aria-label="instagram">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
-                                                    fill="currentColor" aria-hidden="true" class="size-4 shrink-0">
-                                                    <path
-                                                        d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334" />
-                                                </svg>
-                                            </a>
-
-                                            <!-- Linkedin -->
-                                            <a href="https://www.linkedin.com" target="_blank"
-                                                class="text-on-surface hover:text-primary dark:text-on-surface-dark dark:hover:text-primary-dark"
-                                                aria-label="linkedin">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
-                                                    fill="currentColor" aria-hidden="true" class="size-4 shrink-0">
-                                                    <path
-                                                        d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z" />
-                                                </svg>
-                                            </a>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        @endfor
+                        </div>
+                        @empty
+                            
+                        @endforelse
                     </div>
                 </div>
             </div>

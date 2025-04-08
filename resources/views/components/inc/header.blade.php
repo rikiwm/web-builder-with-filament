@@ -1,7 +1,7 @@
 @props(['data' => '', 'content' => ''])
 <nav  x-data="{ mobileMenuIsOpen: false }" x-on:click.away="mobileMenuIsOpen = false"
-    class="transition delay-100 duration-300 ease-in-out hover:bg-white/70 dark:hover:bg-black fixed z-30 w-full rounded-b-lg bg-gray-100/20 backdrop-blur-md border-b border-white/60 dark:bg-black/50 dark:border-gray-900 py-2 px-5">
-    <div class="px-0 flex flex-wrap items-center justify-between mx-auto ">
+    class="transition delay-100 duration-300 ease-in-out hover:bg-white/70  dark:hover:bg-black fixed z-30 w-full rounded-b-lg bg-gray-100/20 backdrop-blur-md border-b border-white/60 dark:bg-black/50 dark:border-gray-900 py-2 px-5">
+    <div class="px-0 flex flex-wrap items-center justify-between mx-auto max-w-screen-xl w-full">
         <x-inc.header-logo />
         <div class="flex items-center md:order-2 md:space-x-0 rtl:space-x-reverse">
             <button id="theme-toggle" class="px-4 py-2 ">

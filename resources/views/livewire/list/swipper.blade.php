@@ -1,4 +1,4 @@
-@props(['title' => '', 'data','route' => ''])
+@props(['title' => '', 'data'=> '','route' => ''])
 <div>
    <div class="flex flex-row justify-between items-start">
     <div>

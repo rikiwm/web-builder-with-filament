@@ -5,7 +5,7 @@
 <div class="swiper-slide">
     <div
         class="w-full max-w-lg  border border-gray-200 rounded-xl shadow-sm dark:bg-zinc-800/10 dark:border-sky-700/30">
-        <a href="#"
+        <a href="{{ route('post.detail', $data->slug) }}"
             class="flex flex-col items-center   md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 ">
             <img class="object-cover w-full  h-50 md:h-80 md:w-full-1/2 rounded-t-xl saturate-0 hover:saturate-100"
                 src="https://padang.go.id/assets/frontend/img/bg/balaikota.webp"
@@ -13,7 +13,7 @@
         </a>
         <div
             class="flex flex-col justify-between p-4 leading-normal">
-            <a href="#"
+            <a href="{{ route('post.detail', $data->slug) }}"
                 class=" text-zinc-400 text-xs w-fit font-medium inline-flex items-center px-2.5 py-0.5 rounded-md dark:bg-zinc-900 dark:text-zinc-700 mb-2">
                 <svg class="w-2.5 h-2.5 me-1.5"
                     aria-hidden="true"

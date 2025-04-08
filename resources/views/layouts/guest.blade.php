@@ -26,7 +26,7 @@
 
 
 </style>
-<body class="font-sans antialiased h-full bg-white bg-[url('https://laravel.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg')] dark:bg-black/90 dark:bg-blend-multiply dark:bg-[url('https://wallpaper.dog/large/20511836.jpg')]">
+<body class="font-sans antialiased h-full bg-white dark:bg-black">
     <header>
         <x-inc.header :data="$nav">
         </x-inc.header>

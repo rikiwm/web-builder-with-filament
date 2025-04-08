@@ -41,7 +41,7 @@ class SettingWebResource extends Resource
                     Block::make('view')
                     ->schema([
                         TextInput::make('section-view')
-                            ->label('Section View')
+                            ->label('Section View / Model View')
                             ->required(),
                         Select::make('model-view')
                             ->label('Model View')
@@ -57,19 +57,43 @@ class SettingWebResource extends Resource
                             ->required(),
                     ])
                     ->columns(2),
-                    Block::make('Gambar')
+                    Block::make('image')->label('Image / Gambar')
                     ->schema([
                      
-                        FileUpload::make('gambar')
+                        FileUpload::make('images')
                             ->label('Gambar')
-                            ->required()
-                            ->preserveFilenames()
+                            ->disk('public')
+                            ->visibility('public')
+                            ->maxFiles(1)
+                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                            ->maxSize(1024)
                             ->directory('setting-web-gambar')
-                            ->enableOpen()
+                    ])
+                    ->columns(1),
+                    Block::make('team')->label('Team / Person Member')
+                    ->schema([
+                        FileUpload::make('images')
+                            ->label('Gambar')
+                            ->disk('public')
+                            ->visibility('public')
+                            ->maxFiles(1)
+                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                            ->maxSize(1024)
+                            ->previewable()
+                            ->directory('setting-web-gambar-team'),
+                        TextInput::make('name')
+                            ->label('Nama')
+                            ->required(),
+                        TextInput::make('title')
+                            ->label('Jabatan')
+                            ->required(),
+                        TextInput::make('mail')
+                            ->label('Email')
+                            ->required(),
                     ])
                     ->columns(1),
                     Block::make('heading')
-                        ->label('Title')
+                        ->label('Title / Judul')
                         ->schema([
                             TextInput::make('content')
                                 ->label('Title')
@@ -79,13 +103,13 @@ class SettingWebResource extends Resource
                                 ->required(),
                         ])
                         ->columns(2),
-                    Block::make('paragraph')
+                    Block::make('paragraph')->label('Paragraph / Isi Content')
                         ->schema([
                             Textarea::make('content')
                                 ->label('Paragraph')
                                 ->required(),
                         ]),
-                    Block::make('key')->label('like json array')
+                    Block::make('key')->label('json array')
                         ->schema([
                             TextInput::make('keys')
                             ->label('Keys')
@@ -94,10 +118,10 @@ class SettingWebResource extends Resource
                             ->label('Body')
                             ->required(),
                         ])->columns(2),
-                        Block::make('desc')->label('Description')
+                    Block::make('desc')->label('Description')
                         ->schema([
                             TextInput::make('desc')
-                            ->label('desc')
+                            ->label('Description')
                             ->required(),
                         ])->columns(1),
 

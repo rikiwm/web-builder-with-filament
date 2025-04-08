@@ -51,6 +51,7 @@ class MenuResource extends Resource
                     Section::make('Menus')->description('Prevent abuse by limiting the number of requests per period')->icon('heroicon-m-hand-raised')
                         ->schema([
                             TextInput::make('name')->live(onBlur: true)->required()->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
+                            TextInput::make('description')->label('Description')->placeholder('Description')->maxLength(255)->helperText('Optional'),
                             // TextInput::make('name')->required()->maxLength(255)->afterStateUpdated(function ($state, callable $set) {
                             // //     $set('slug', Str::slug($state));
                             // })->live(),
@@ -66,7 +67,6 @@ class MenuResource extends Resource
                         Section::make('Menus')->description('Prevent abuse by limiting the number of requests per period')
                                 ->schema([
                             Select::make('icon')->options(Iconset::icon())->searchable(),
-
                             // Hidden::make('slug'),
                             TextInput::make('slug')->label('Route / Link / Slug ')
                             ->suffix('.com')->placeholder('jika link maka manual url')

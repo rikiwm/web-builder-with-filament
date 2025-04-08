@@ -2,17 +2,15 @@
 <div wire:ignore>
     @if ($hero)
     <div class="py-0 text-black/50 dark:text-white/50">
-        <div class="rounded-t-3xl bg-center bg-cover rounded-b-3xl 
-                bg-[url('https://upload.wikimedia.org/wikipedia/commons/b/be/Balai_kota_Padang_tempo_doeloe.jpg')] bg-white/20 bg-blend-overlay
-                dark:bg-[url('https://padang.go.id/assets/frontend/img/bg/balaikota.webp')]
+        <div class="rounded-2xl bg-center bg-cover 
+                bg-[url('http://127.0.0.1:8000/frontend/bg-old.jpg')] bg-gray-500/50 dark:bg-transparent bg-blend-overlay
+                dark:bg-[url('http://127.0.0.1:8000/frontend/bg-2.jpg')]
                  dark:bg-zinc-900/70 dark:bg-blend-overlay">
-
-
                 <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-24">
-                    <div class="mt-6 lg:mt-10 mx-auto py-6 lg:py-12 space-y-12">
+                    <div class="mt-6 lg:mt-10 mx-auto py-6 lg:py-12 space-y-8">
                         <img class="size-20 mx-auto mb-2 hover:animate-bounce opacity-90 "
-                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Logo_Padang.svg/1782px-Logo_Padang.svg.png"
-                            alt="">
+                            src="{{ asset('frontend/pdg.png') }}"
+                            alt="logo">
                       
                         <h1
                             class="w-10/12 mx-auto mb-4 text-4xl text-base tracking-tight leading-none text-white md:text-5xl uppercase
@@ -20,6 +18,7 @@
                         lg:mt-2">
                             <span class="text-transparent bg-clip-text bg-gradient-to-t to-zinc-50 font-extrabold text-balance  
                             from-gray-300 dark:to-gray-500 dark:from-yellow-50 ">
+                            {{-- {{ url('storage/' .$hero['value'][2]['data']['images'] ?? 'Padang') }} --}}
                                 {{  $hero['value'][0]['data']['desc'] ?? 'Padang' }}
                             </span>
                         </h1>
@@ -33,7 +32,7 @@
 
                     <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
                         <form class="w-full max-w-md mx-auto ">
-                            <div class="relative rounded-pill">
+                            <div class="relative rounded-xl">
                                 <div class="text-center">
                                     <x-btn.search-button class="py-2"
                                     x-data=""
@@ -59,13 +58,10 @@
                     </div>
         </div>
 
-        <div class="mb-0 pb-0">
+        {{-- <div class="mb-0 pb-0">
             <div class="py-12 md:py-14 sm:py-12 lg:py-14 ">
                 <div class="-mt-20 lg:-mt-36 md:-mt-36 sm:-mt-24 z-30 dark:hidden">
-               
-                    {{-- <svg class="border-b-8 border-white bg-clip-content w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60">
-                        <path fill="white" d="M0,0V60H1440V0A5771,5771,0,0,1,0,0Z" />
-                    </svg> --}}
+            
                     <svg  class="border-b-8 border-white bg-clip-content w-full" viewBox="0 0 1440 200" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0 0C0 0 327 90 718.5 90C1110 90 1440 0 1440 0V200H0V0Z" fill="white" />
                     </svg>
@@ -74,16 +70,9 @@
                   <svg  class="border-b-8 border-black opacity-90 bg-clip-content w-full" viewBox="0 0 1440 200" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0 0C0 0 327 90 718.5 90C1110 90 1440 0 1440 0V200H0V0Z" fill="black" />
                     </svg>
-                    {{-- <svg class="border-b-8 border-black/90 w-full rounded-b-xl" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60">
-                        <path fill="" d="M0,0V60H1440V0A5771,5771,0,0,1,0,0Z" />
-                    </svg> --}}
                 </div>
             </div>
-            {{-- <div class="border border-b-4 border-t-0 border-zinc-100 dark:border-gray-700/20 rounded-xl p-4 lg:p-10 bg-white dark:backdrop-blur-sm dark:bg-transparent
-                mb-12 mx-auto max-w-screen-lg -m-1">
-
-            </div> --}}
-        </div>
+        </div> --}}
     </div>
 
     @elseif ($section)

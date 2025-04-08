@@ -1,28 +1,23 @@
-{{-- @props(['model_view' => '']) --}}
+@props(['url' => $title ?? null ])
 <x-layouts.guest class="">
 
-    <div class="py-4  text-black/50 dark:text-white/50">
+    <div class="py-4 text-black/50 dark:text-white/50">
         <div class=" min-h-screen mt-12 lg:mt-0
         selection:bg-[#03A56A] selection:text-white">
             <div class=" w-full px-4 ">
                 <main class="py-12">
-                    <div class="max-w-screen-xl px-4">
-                        <nav class="text-sm font-medium text-on-surface dark:text-on-surface-dark" aria-label="breadcrumb">
-                            <ol class="flex flex-wrap items-center gap-2">
-                                <li class="flex items-center gap-2">
-                                    <a href="#" class="hover:text-on-surface-strong dark:hover:text-on-surface-dark-strong">Home</a>
-                                    <span aria-hidden="true">/</span>
-                                </li>
-                                <li class="flex items-center gap-2">
-                                    <a href="#" class="hover:text-on-surface-strong dark:hover:text-on-surface-dark-strong">Components</a>
-                                    <span aria-hidden="true">/</span>
-                                </li>
-                                <li class="text-on-surface-strong font-bold dark:text-on-surface-dark-strong" aria-current="page">Breadcrumb</li>
-                            </ol>
-                        </nav>
-                    </div>
+                    <x-breadcumb.breadcumb>
+                        <x-slot name="content">
+                            <li class="flex items-center gap-2">
+                                <a href="/" class="hover:text-on-surface-strong dark:hover:text-on-surface-dark-strong" wire:navigate>Home</a>
+                                <span aria-hidden="true">/</span>
+                            </li>
+                           
+                            <li class="text-on-surface-strong font-bold dark:text-on-surface-dark-strong capitalize" aria-current="page">{{  Str::limit($title, 12, preserveWords: true); }}</li>
+                        </x-slot>
+                    </x-breadcumb.breadcumb>
 
-                    <x-page.section-slide>
+                    {{-- <x-page.section-slide>
                         <x-slot name=slider>
                             <div class="py-2 md:py-0 w-full max-w-screen-2xl mx-auto ">
                                 <div
@@ -42,14 +37,11 @@
 
                                         <div class="swiper-pagination"></div>
                                     </div>
-
                                 </div>
-
                             </div>
                             </div>
                         </x-slot>
-
-                    </x-page.section-slide>
+                    </x-page.section-slide> --}}
                     <livewire:list.list-controller :title="$title" :dataobject="collect($data)" model_view="{{ $model_view ?? 'asd' }}" />
                 </main>
             </div>
