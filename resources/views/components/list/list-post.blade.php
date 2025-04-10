@@ -1,9 +1,16 @@
 @props(['data' => '', 'limit' => '', 'title' => null, 'class' => '','link' => null,'class' => 'col-span-1'])
 @php
-$image = $data->content[1]['data']['image'] ?? [];
-
+    $img = array_filter($data['content'], fn($content) => $content['type'] === 'image');
+    $img = array_map(function ($content) {
+        return [
+            'type' => $content['type'],
+            'data' => [
+                'content' => url('storage/' . ($content['data']['content'] ?? 'default.jpg')),
+            ],
+        ];
+    }, $img);
+    $img = array_values($img);
 @endphp
-
 
 {{-- <article class="max-w-sm mx-auto {{ $class }}">
     <a href="{{ route('post.detail', $data->slug) }}" wire:navigate>
@@ -30,19 +37,19 @@ $image = $data->content[1]['data']['image'] ?? [];
         {{ $data->categori->name }}
     </a>
 </article> --}}
-<article class="flex max-w-xl flex-col items-start justify-between">
+
+
+<article class="flex max-w-xl flex-col items-start justify-between py-4">
+    @if ($data->categori->slug == 'kelurahan')
+    <a href="{{ url('kelurahan',$data->slug) }}" wire:navigate>
+    @else
     <a href="{{ route('post.detail', $data->slug) }}" wire:navigate>
-        @forelse ($image as $img)
-        <img src="{{ url('storage/' . $img ?? '') }}"
-        class="mb-2 rounded-lg" loading="lazy">
-        @break
-        @empty
-        <img src="https://www.thewall360.com/uploadImages/ExtImages/images1/def-638240706028967470.jpg"
-        class="mb-2 rounded-lg saturate-0 hover:saturate-50" loading="lazy">
-        @endforelse
+    @endif
+<img src="{{ $img[0]['data']['content'] ?? 'https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg' }}"
+        class="mb-2 lg:mb-1 rounded-lg object-cover w-full h-52" loading="lazy">
     </a>
-    <div class="flex items-center gap-x-4 text-xs">
-      <time datetime="2020-03-16" class="text-gray-500">   {{$data->created_at->locale('id')->diffForHumans()}}</time>
+    <div class="flex items-center gap-x-2 text-xs">
+      <time datetime="2020-03-16" class="text-gray-500">{{$data->created_at->locale('id')->diffForHumans()}}</time>
       <a href="#" class="relative z-10 rounded-md bg-slate-100 px-3 py-1 font-medium text-gray-400 hover:bg-gray-400"> {{ $data->categori->name }}</a>
     </div>
     <div class="group relative">
@@ -54,7 +61,9 @@ $image = $data->content[1]['data']['image'] ?? [];
         </a>
  
       </h3>
-      <p class="mt-2 line-clamp-3 text-sm/6 text-gray-600">Illo sint voluptas. Error voluptates culpa eligendi.deserunt vel. Iusto corrupti dicta.</p>
+      <p class="mt-2 line-clamp-3 text-sm/6 text-gray-600">
+        @if ($data->categori->name === 'kelurahan') Illo sint voluptas. Error voluptates culpa eligendi.deserunt vel. Iusto corrupti dicta. @endif
+    </p>
     </div>
 
   </article>

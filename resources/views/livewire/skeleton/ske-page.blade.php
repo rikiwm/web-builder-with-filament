@@ -8,7 +8,7 @@
             </div>
         </div>
     </div>
-    <div class="mx-auto w-full lg:max-w-screen-lg">
+    {{-- <div class="mx-auto w-full lg:max-w-screen-lg">
         <div class="grid gap-6 lg:grid-cols-2 lg:gap-8">
             <a href="https://laravel.com/docs" id="docs-card" class="bg-gray-200 rounded-lg dark:bg-zinc-900  h-100 ">
                 <div id="screenshot-container" class="relative flex items-stretch flex-1 w-full ">
@@ -25,7 +25,7 @@
             </a>
 
         </div>
-    </div>
+    </div> --}}
 
 </section>
 

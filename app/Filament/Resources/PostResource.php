@@ -64,7 +64,24 @@ class PostResource extends Resource
             ]),
             Block::make('paragraph')->schema([
                 RichEditor::make('content')
-                    ->toolbarButtons(['bold', 'italic']),
+                    ->toolbarButtons([
+                        'attachFiles',
+                        'blockquote',
+                        'bold',
+                        'bulletList',
+                        'codeBlock',
+                        'h1',
+                        'h2',
+                        'h3',
+                        'italic',
+                        'link',
+                        'orderedList',
+                        'redo',
+                        'strike',
+                        'underline',
+                        'undo',
+                    ]),
+                
             ]),
             Block::make('image')->schema([
                 FileUpload::make('content')
@@ -75,6 +92,16 @@ class PostResource extends Resource
                 ->directory('post_image')
                 ->visibility('public')
             ]),
+            Block::make('link')->label('Link / URL / Button')
+            ->schema([
+                TextInput::make('title')
+                ->label('Title')
+                ->required(),
+                TextInput::make('link')
+                ->prefix('https://')
+                ->label('route / URL / Button')
+                ->required(),   
+            ])->columns(2),
         ])
             ->columnSpanFull()
             ->collapsible();
@@ -88,6 +115,8 @@ class PostResource extends Resource
 
                 Wizard::make([
                     Wizard\Step::make('Post')
+                    ->icon('heroicon-m-newspaper')
+                    ->description('Pilih Menu untuk postingan')
                         ->schema([
 
                             Select::make('menu_id')->required()->label('Menu')
@@ -96,10 +125,11 @@ class PostResource extends Resource
                                     modifyQueryUsing: fn (Builder $query) => $query->where('type', 'list'),
                                     titleAttribute: 'name')
                                 ->live(onBlur: true)
+                ->disabled(fn ($record) => filled($record))
+
                                 ->afterStateUpdated(function ($state, callable $set) {
                                     $menu = \App\Models\Menu::find($state);
                                     if ($menu) {
-                                        // $set('slug', $menu->slug); // Set hasil query
                                         $set('sub_title', $menu->name); // Set hasil query
                                     }
                                 }),
@@ -112,6 +142,8 @@ class PostResource extends Resource
                             // ]),
                         ]),
                     Wizard\Step::make('Description')
+                    ->icon('heroicon-m-list-bullet')
+                    ->description('Buat Description untuk postingan')
                         ->schema([
                             Section::make('Heading')
                                 ->description('')
@@ -119,16 +151,26 @@ class PostResource extends Resource
                                     TextInput::make('title')->live(onBlur: true)->required()
                                     ->columnSpanFull()->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
                                     TextInput::make('sub_title')->label('Short Title'),
-                                Select::make('categori_id')->relationship('categori', 'name')->preload()->searchable(),
+                                Select::make('categori_id')->relationship('categori', 'name')->preload()->searchable()->required(),
                                     
                                 ])
                                 ->columns(2),
+                                FileUpload::make('image')
+                                ->disk('public')
+                                ->label('Cover Image')
+                                ->image()
+                                ->maxFiles(1)
+                                ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                                ->directory('post_thumbnail_image')
+                                ->visibility('public'),
                             Hidden::make('created_by')->default(auth()->user()->id),
                             Hidden::make('slug'),
                       
                             // RichEditor::make('content')->columnSpanFull()->required(),
                         ])->columns(2),
                     Wizard\Step::make('Content')
+                    ->icon('heroicon-m-list-bullet')
+                    ->description('Buat Content postingan')
                         ->schema([
                             Actions::make([
                                 InlinePreviewAction::make()
@@ -146,7 +188,7 @@ class PostResource extends Resource
                     Fieldset::make('Status')
                     ->schema([
                         Toggle::make('is_active')->required(),
-                        Toggle::make('is_featured'),
+                        Toggle::make('is_featured')->label('Featured'),
                         DatePicker::make('published_at')->label('Published')->required()->inlineLabel(),
 
                         // DateTimePicker::make('published_at')

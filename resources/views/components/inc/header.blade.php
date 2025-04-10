@@ -12,9 +12,9 @@
                 </svg>
             </button>
             @auth
-                <a href="/dashboard" wire:navigate
-                    class="flex text-sm bg-transparent rounded md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 dark:hover:ring-1 dark:hover:ring-green-900 dark:hover:bg-transparent dark:hover:text-green-800">
-                    <svg class="text-green-800 w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                <a href="app" wire:navigate
+                    class="flex text-sm bg-transparent rounded md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 dark:hover:ring-1 dark:hover:ring-sky-900 dark:hover:bg-transparent dark:hover:text-green-800">
+                    <svg class="text-green-800 w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                         <circle cx="12" cy="7" r="4" />

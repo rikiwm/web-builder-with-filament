@@ -1,7 +1,7 @@
 @props(['content' => '', 'class' => ''])
 @php
 $content = $content ?? '';
-$img = Str::endsWith($content, '.jpg', '.jpeg', ',png');
+$img = Str::endsWith($content, '.jpg', '.jpeg', '.png', '.svg', '.webp', );
 $file = Str::endsWith($content, '.docx', '.doc', '.pdf');
 @endphp
 @if ($img === true)

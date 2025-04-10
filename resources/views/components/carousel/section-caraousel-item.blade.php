@@ -8,8 +8,8 @@
         <a href="{{ route('post.detail', $data->slug) }}"
             class="flex flex-col items-center   md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 ">
             <img class="object-cover w-full  h-50 md:h-80 md:w-full-1/2 rounded-t-xl saturate-0 hover:saturate-100"
-                src="https://padang.go.id/assets/frontend/img/bg/balaikota.webp"
-                alt="">
+                src="{{ url('storage/' . $data->images ?? 'Padang') }}"
+                alt="sample image" />
         </a>
         <div
             class="flex flex-col justify-between p-4 leading-normal">

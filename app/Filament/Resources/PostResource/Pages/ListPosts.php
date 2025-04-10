@@ -6,7 +6,7 @@ use App\Filament\Resources\PostResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Resources\Components\Tab;
-
+use App\Models\Menu;
 
 class ListPosts extends ListRecords
 {
@@ -21,13 +21,10 @@ class ListPosts extends ListRecords
 
     public function getTabs(): array
     {
-        $tabs = [
-            'Active' => Tab::make()->query(fn ($query) => $query->where('is_active', 1)),
-            'Not Active' => Tab::make()->query(fn ($query) => $query->where('is_active', 0)),
-            // 'Active' => Tab::make()->query(fn ($query) => $query->whereHas('menu', fn ($q) => $q->where('type', 'page'))),
-            // 'Not Active' => Tab::make()->query(fn ($query) => $query->whereHas('menu', fn ($q) => $q->where('type', 'list'))),
-
-        ];
+        $menu = Menu::where('type', 'list')->where('is_active', 1)->get();
+        foreach ($menu as $item) {
+            $tabs[$item->name] = Tab::make()->query(fn ($query) => $query->where('menu_id', $item->id));
+        }
         return $tabs;
     }
 }

@@ -24,7 +24,11 @@ class Swipper extends Component
     public function render()
     {
         
-        $this->d = Post::all();
+        $this->d = Post::where('is_active', 1)
+            ->where('categori_id', 1)
+            ->with(['user','categori','menu'])
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         return view('livewire.list.swipper',[
             'data' => $this->d

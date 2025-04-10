@@ -68,7 +68,21 @@ class PageResource extends Resource
 
                 Block::make('paragraph')->schema([
                 RichEditor::make('content')
-                    ->toolbarButtons(['bold', 'italic']),
+                ->toolbarButtons([
+                    'blockquote',
+                    'bold',
+                    'table',
+                    'bulletList',
+                    'codeBlock',
+                    'h1',
+                    'h2',
+                    'h3',
+                    'italic',
+                    'link',
+                    'orderedList',
+                    'strike',
+                    'underline',
+                ]),
             ]),
             Block::make('image')->schema([
               FileUpload::make('images')->label('Image / File')
@@ -76,7 +90,7 @@ class PageResource extends Resource
                     ->directory('page_image')
                     ->visibility('public')
                     ->maxFiles(1)
-                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp','application/pdf','application/docx'])
+                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp','application/pdf','application/docx','image/svg+xml'])
                     ->maxSize(1024)
             ]),
 
@@ -103,7 +117,8 @@ class PageResource extends Resource
                                     })
 
                                     ->schema([
-                                        Select::make('menu_id')->required()->label('Menus')->selectablePlaceholder(true)
+                                        Select::make('menu_id')->required()
+                                        ->label('Menus')->selectablePlaceholder(fn ($state) => 'Select Menu')
                                             ->relationship(
                                                 name: 'menus',
                                                 modifyQueryUsing: fn (Builder $query) => $query->where('type', 'page')->whereNotIn('id', Page::query()->pluck('menu_id')->toArray()),
@@ -129,7 +144,7 @@ class PageResource extends Resource
                                         Fieldset::make('Title and Categori')
                                         ->schema([
                                             TextInput::make('title'),
-                                            Select::make('categori_id')->relationship('category', 'name')->preload()->searchable(),
+                                            Select::make('categori_id')->relationship('category', 'name')->preload()->searchable()->required(),
                                         ]),
 
                                         Hidden::make('created_by')->default(auth()->user()->id),
@@ -166,7 +181,7 @@ class PageResource extends Resource
 
                             Actions::make([
                                 InlinePreviewAction::make()
-                                    ->label('Live Preview')
+                                    ->label('Live Edit')
                                     ->builderName('content'),
                             ])
                                 ->columnSpanFull()

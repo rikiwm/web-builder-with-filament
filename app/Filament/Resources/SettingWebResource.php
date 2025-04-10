@@ -13,6 +13,7 @@ use Filament\Forms\Components\Builder as ComponentsBuilder;
 use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\View;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -28,15 +29,56 @@ class SettingWebResource extends Resource
     protected static ?string $model = SettingWeb::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationName = 'Pengaturan';
 
     public static function form(Form $form): Form
     {
         return $form
         ->schema([
             Fieldset::make('Setup')->schema([
-                TextInput::make('key')->required()->label('Key')->placeholder('title'),
+                Select::make('key')
+                ->label('View')
+                ->helperText('Select the view you want to use')
+              
+                ->options(function ($get) {
+                    $usedKeys = SettingWeb::pluck('key')->toArray();
+                    $allOptions = [
+                        'hero-section' => 'Hero',
+                        'team-section' => 'Team',
+                        'welcome' => 'View welcome',
+                        'app' => 'App name',
+                        'copyright' => 'Copyright',
+                        'footer' => 'Footer',
+                        'contact' => 'Contact',
+                        'social' => 'Social',
+                        'address' => 'Address',
+                        'phone' => 'Phone',
+                        'email' => 'Email',
+                        'section-1' => 'Section 1',
+                        'section-2' => 'Section 2',
+                        'section-3' => 'Section 3',
+                        'section-4' => 'Section 4',
+                        'section-5' => 'Section 5',
+                        'section-6' => 'Section 6',
+
+                    ];
+                    $currentKey = $get('key');
+                    if ($currentKey && !in_array($currentKey, $usedKeys)) {
+                        // aman, tidak perlu ubah
+                    } elseif ($currentKey && in_array($currentKey, $usedKeys)) {
+                        // hapus dari usedKeys agar tetap tampil
+                        $usedKeys = array_diff($usedKeys, [$currentKey]);
+                    }
+                    return collect($allOptions)
+                        ->reject(fn ($label, $key) => in_array($key, $usedKeys))
+                        ->toArray();
+                })
+                ->selectablePlaceholder($currentKey ?? 'Select a view')
+                ->disabled(fn ($record) => filled($record))
+                ->required(),
                 ToggleButtons::make('status')->boolean()->label('Is Active')->inline(),
-                ComponentsBuilder::make('value')
+                ComponentsBuilder::make('value')->label('Isi Content')
+                ->helperText('Select the view you want to use')
                 ->blocks([
                     Block::make('view')
                     ->schema([
@@ -118,6 +160,17 @@ class SettingWebResource extends Resource
                             ->label('Body')
                             ->required(),
                         ])->columns(2),
+                    Block::make('link')->label('Link / URL / Button')
+                        ->schema([
+                            TextInput::make('title')
+                            ->label('Title')
+                            ->required(),
+                            TextInput::make('route')
+                            ->prefix('https://')
+                            ->label('route / URL / Button')
+                            ->required(),   
+                        ])->columns(2),
+                 
                     Block::make('desc')->label('Description')
                         ->schema([
                             TextInput::make('desc')

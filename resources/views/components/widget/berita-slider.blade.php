@@ -1,0 +1,2 @@
+@props(['content' => ''])
+{{ $content }}

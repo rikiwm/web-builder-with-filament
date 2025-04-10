@@ -20,7 +20,7 @@ class EditPage extends EditRecord
     {
         return [
             Actions\DeleteAction::make(),
-            PreviewAction::make(),
+            // PreviewAction::make(),
 
         ];
     }

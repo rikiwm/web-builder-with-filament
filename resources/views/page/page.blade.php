@@ -7,7 +7,7 @@
                 <main class="py-12">
 
                     <div class="py-2 md:py-4 w-full max-w-screen-2xl mx-auto">
-                        <div class="mb-4 flex justify-center items-center border bg-zinc-200/90 dark:bg-zinc-800/80 w-full h-52 lg:h-64 border-gray-200/20 dark:border-zinc-900 rounded-[14px] p-0 md:p-2  px-4">
+                        <div class="mb-4 flex justify-center items-center border bg-zinc-200 dark:bg-zinc-800/80 w-full h-52 lg:h-64 border-gray-200/20 dark:border-zinc-900 rounded-[14px] p-0 md:p-2  px-4">
                             <div class="items-center text-center">
                                 <h1
                                     class="mb-2 text-3xl font-semibold text-gray-50 dark:text-zinc-950 md:text-2xl lg:text-5xl text-center uppercase">
@@ -34,17 +34,18 @@
                                 </h1>
                                 <p
                                     class="mb-2 text-xs font-ligjt text-sky-950/50 dark:text-white md:text-sm lg:text-sm text-center capitalize">
-                                    @if ($data['updated_at'] != null)
+                                    {{-- @if ($data['updated_at'] != null)
                                         Di Update :
                                     @else
                                         Created :
-                                    @endif
-                                    {{ $data['updated_at']->locale('id')->diffForHumans() ?? $data['created_at']->locale('id')->diffForHumans() }} 
+                                    @endif --}}
+                                    {{-- {{ $data['updated_at']->locale('id')->diffForHumans() ?? $data['created_at']->locale('id')->diffForHumans() }}  --}}
                                 </span>
                                 </p>
                             </div>
                          </div>
                     </div>
+
                     @if ($data != null)
                     <livewire:page.page-controller :title="$title" :data="$data" class=""/>
                     @endif

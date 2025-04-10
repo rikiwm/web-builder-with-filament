@@ -22,6 +22,7 @@ Route::prefix('/')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/{slug}', [HomeController::class, 'show'])->name('show');
     Route::get('/post/{slug}', [ListController::class, 'list'])->name('post.detail');
+    Route::get('/kelurahan/{slug}', [ListController::class, 'list_kelurahan']);
     // Route::get('/about', [HomeController::class, 'about'])->name('about');
     // Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
     // Route::get('/services', [HomeController::class, 'services'])->name('services');
