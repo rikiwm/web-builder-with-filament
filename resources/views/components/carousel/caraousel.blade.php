@@ -1,5 +1,6 @@
 @props(['img','content'=>'','hero'=>''])
 @php
+  if (isset($hero['value'])) {
     $img = array_filter($hero['value'], function (array $value): bool {
         $d = $value['type'] === 'image';
         return $d;
@@ -13,8 +14,9 @@
         ];
     }, $img);
     $img = array_values($img);
+  }
 @endphp
-<div x-data="{            
+<div x-data="{
     autoplayIntervalTime: 8000,
     slides: [
         @foreach ($img as $item)
@@ -89,7 +91,7 @@
             class=" text-center text-xl font-semibold text-zinc-50 lg:text-md sm:px-16 xl:px-48 dark:text-zinc-100 capitalize">
             {{  $hero['value'][1]['data']['content'] ?? 'Padang' }}</p>
             <p class="text-center text-sm font-normal text-zinc-50 ">
-                {{  $hero['value'][1]['data']['sub_content'] ?? 'Padang' }} 
+                {{  $hero['value'][1]['data']['sub_content'] ?? 'Padang jhjhh' }} 
             </p>
         </div>
 

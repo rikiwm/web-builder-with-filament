@@ -57,15 +57,21 @@
     <div class="py-2 mx-auto max-w-screen-lg lg:py-4 ">
         @php
             $data = 0;
-            $count = count($team['value']);
+            if(isset($team['value']))
+            {
+                $count = count($team['value']);
             if ($count >= 6) {
                 $data = 4;
             }else {
                 $data = $count;
             }
+            }
+   
         @endphp
         <div class="swiper cardSlider" data-xs="2" data-lg="{{ $data }}">
             <div class="swiper-wrapper">
+                @isset($team['value'])
+                    
                 @forelse ($team['value'] as $t)
                 <div class="swiper-slide">
                     <div
@@ -113,6 +119,8 @@
                 @empty
                     
                 @endforelse
+                @endisset
+
             </div>
         </div>
     </div>

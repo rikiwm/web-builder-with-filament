@@ -20,7 +20,9 @@ return new class extends Migration
             $table->integer('order')->default(0);
             $table->foreignId('parent_id')->index()->nullable()->constrained('menus')->onDelete('cascade');
             $table->boolean('is_active')->default(true);
+            $table->boolean('is_visible')->default(false);
             $table->enum('type', ['place','page', 'list','link','more'])->default('place');
+            $table->enum('model_view', ['card','table']);
             $table->softDeletes();
             $table->timestamps();
         });

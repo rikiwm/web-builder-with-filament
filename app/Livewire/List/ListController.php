@@ -16,7 +16,7 @@ class ListController extends Component
     public $news_top = null;
     public $menu_slug;
     public $model_view;
-    public $limit = 3;
+    public $limit = 4;
     public $datacount;
     public function placeholder()
     {
@@ -24,7 +24,7 @@ class ListController extends Component
     }
     public function loadMore()
     {
-        $this->limit += 3;
+        $this->limit += 4;
 
         if ($this->datacount < $this->limit ) {
             $this->render();

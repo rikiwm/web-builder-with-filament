@@ -2,13 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-.navbar {
-    backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.8);
-}
+
+
 .dropdown-content {
     opacity: 0;
     visibility: hidden;

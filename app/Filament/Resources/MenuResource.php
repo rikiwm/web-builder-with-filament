@@ -42,8 +42,8 @@ class MenuResource extends Resource
         ])
             ->schema([
                 Section::make('Instructions')->icon('heroicon-o-document-text')->collapsible()->schema([
-                    Placeholder::make('Tutorial')
-                        ->content(new HtmlString('please visit <a href="https://filamentphp.com/docs/2.x/components/forms/wizard" target="_blank" class="underline">docs</a>')),
+                    Placeholder::make('Tutorials')
+                    ->content(fn (Get $get) => new HtmlString('Contoh Menu : <a href="https://filamentphp.com/docs/2.x/components/forms/wizard" target="_blank" class="underline">'. $get('type').'</a>')),
                 ]),
 
 
@@ -51,17 +51,15 @@ class MenuResource extends Resource
                     Section::make('Menus')->description('Prevent abuse by limiting the number of requests per period')->icon('heroicon-m-hand-raised')
                         ->schema([
                             TextInput::make('name')->live(onBlur: true)->required()->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
-                            TextInput::make('description')->label('Description')->placeholder('Description')->maxLength(255)->helperText('Optional'),
-                            // TextInput::make('name')->required()->maxLength(255)->afterStateUpdated(function ($state, callable $set) {
-                            // //     $set('slug', Str::slug($state));
-                            // })->live(),
-                            Select::make('parent_id')->relationship('parent', 'name')->preload()->searchable(),
-                            Select::make('type')->required()->options([
+                            TextInput::make('description')->label('Description')->placeholder('Description Ex : Profil User ')->maxLength(255)->helperText('Optional'),
+                            Select::make('parent_id')->relationship('parent', 'name')->preload()->searchable()->label('Pilih Parent Menu')->placeholder('Pilih Parent dari Menu Ex : Profil')->live(),
+                            Select::make('type')->required()->label('Tipe Menu')
+                            ->options([
                                 'place' => 'place',
                                 'page' => 'page',
                                 'list' => 'list',
                                 'link' => 'link',
-                            ])->placeholder('Default is palce')->live(),
+                            ])->placeholder('Pilih Tipe dari Menu Ex : List atau Page')->live(),
 
                         ]),
                         Section::make('Menus')->description('Prevent abuse by limiting the number of requests per period')
@@ -71,6 +69,7 @@ class MenuResource extends Resource
                             TextInput::make('slug')->label('Route / Link / Slug ')
                             ->suffix('.com')->placeholder('jika link maka manual url')
                             ->readOnly(fn (Get $get) => $get('type') !== 'link')
+                            
                             ->live(),
                             Select::make('model_view')->options([
                                 'card' => 'card',
@@ -78,9 +77,11 @@ class MenuResource extends Resource
                             ])
                             ->disabled(fn (Get $get) => $get('type') !== 'list')
                             ->searchable()->label('List Card / Table ')->suffix('view')
+                            ->helperText(new HtmlString('<a href="https://filamentphp.com/docs/2.x/components/forms/wizard" target="_blank" class="underline">Contoh </a>'))
                             ->placeholder('jika link maka manual url'),
                                 ])->grow(false),
-                            ])
+                            ]),
+                        
 
 
             ]);

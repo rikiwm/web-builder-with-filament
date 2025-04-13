@@ -7,9 +7,15 @@
         class="w-full max-w-lg  border border-gray-200 rounded-xl shadow-sm dark:bg-zinc-800/10 dark:border-sky-700/30">
         <a href="{{ route('post.detail', $data->slug) }}"
             class="flex flex-col items-center   md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 ">
-            <img class="object-cover w-full  h-50 md:h-80 md:w-full-1/2 rounded-t-xl saturate-0 hover:saturate-100"
-                src="{{ url('storage/' . $data->images ?? 'Padang') }}"
+            @isset( $data->images)
+            <img class="object-cover w-full  h-50 md:h-80 md:w-full-1/2 rounded-t-xl saturate-0 hover:saturate-100"src="{{ url('storage/' . $data->images ?? '') }}"
+            alt="sample image" />
+                @else
+                <img class="object-cover w-full  h-50 md:h-80 md:w-full-1/2 rounded-t-xl saturate-0 hover:saturate-100"
+                src="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg"
                 alt="sample image" />
+            @endisset
+          
         </a>
         <div
             class="flex flex-col justify-between p-4 leading-normal">

@@ -1,11 +1,7 @@
-@props(['hero','section','welcome','berita','team'])
-<div wire:ignore>
-    {{-- @if ($hero) --}}
+@props(['hero' =>'','welcome'=>''])
+<div>
     <x-carousel.caraousel :content="$hero['value'][0]['data']['content'] ?? 'content'" :hero="$hero">
     </x-carousel.caraousel>
-    {{-- @else --}}
-    {{-- <x-carousel.caraousel :content="$hero['value'][0]['data']['content'] ?? 'content'" :hero="$hero">
-    {{-- @endif --}}
     <div class="py-4 px-4 w-full lg:max-w-screen-xl mx-auto text-center -mt-16 lg:-mt-0">
         <div class="lg:pb-20">
             <div class="mx-auto max-w-7xl   ">
@@ -28,10 +24,10 @@
                         class="mx-auto max-w-screen-2xl w-full text-center lg:mx-0 lg:flex-auto lg:py-10 lg:text-left">
                         <h2
                             class="text-xl font-semibold tracking-tight text-zinc-900 text-balance dark:text-white sm:text-4xl">
-                            {{  $welcome['value'][0]['data']['content'] ?? 'content' }} 
+                           @isset($welcome['value']) {{  $welcome['value'][0]['data']['content'] ?? 'content' }} @endisset                            
                           </h2>
                         <p class="mt-6 text-sm lg:text-lg/6 text-pretty text-zinc-900 dark:text-gray-300">
-                          {{  $welcome['value'][0]['data']['sub_content'] ?? 'sub_content' }} 
+                           @isset($welcome['value']) {{  $welcome['value'][0]['data']['sub_content'] ?? 'content' }} @endisset                            
                         </p>
                         <div class="mt-6 flex items-center justify-center gap-x-2 lg:justify-start">
                             <a href="#"
@@ -42,6 +38,7 @@
                     <div
                         class=" max-w-screen-sm mt-8 lg:mt-8 lg:mx-0 mx-auto lg:flex lg:flex-col lg:py-2  size-32 ">
                         <!-- ========== Start img and name ========== -->
+                        @isset($welcome['value'][1])                         
                   
                         <img src="{{  url('storage/' . $welcome['value'][1]['data']['images'] ?? 'https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg') }} "
                             class="object-cover transition duration-700 ease-out group-hover:scale-105 rounded-md bg-white/5 ring-1 ring-white/10  hover:scale-125 mb-2"
@@ -51,12 +48,10 @@
                                 aria-hidden="true">→</span></a>
                         
                         <!-- ========== End img and name ========== -->
-                        
+                        @endisset    
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-  
 </div>

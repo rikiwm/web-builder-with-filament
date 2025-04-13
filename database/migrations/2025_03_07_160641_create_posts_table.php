@@ -22,8 +22,10 @@ return new class extends Migration
             $table->date('published_at')->nullable();
             $table->boolean('is_active')->default(true)->nullable();
             $table->boolean('is_featured')->default(false)->nullable();
+            $table->date('end_featured_date')->nullable();
             $table->foreignId('categori_id')->index();
             $table->foreignId('created_by')->index()->nullable();
+            $table->integer('visitor')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

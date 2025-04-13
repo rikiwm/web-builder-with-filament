@@ -78,6 +78,7 @@ class SettingWebResource extends Resource
                 ->required(),
                 ToggleButtons::make('status')->boolean()->label('Is Active')->inline(),
                 ComponentsBuilder::make('value')->label('Isi Content')
+                ->collapsible(true)
                 ->helperText('Select the view you want to use')
                 ->blocks([
                     Block::make('view')

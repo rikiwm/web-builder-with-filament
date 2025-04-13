@@ -19,7 +19,6 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->boolean('is_active')->default(true);
             $table->foreignId('parent_id')->index()->nullable()->constrained('categoris')->onDelete('cascade');
-            // $table->foreignId('created_by')->index()->default(FacadesAuth::user()->id ?? 1);
             $table->softDeletes();
             $table->timestamps();
         });

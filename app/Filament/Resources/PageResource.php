@@ -18,6 +18,7 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -103,6 +104,7 @@ class PageResource extends Resource
         return $form
         ->columns(1)
             ->schema([
+            
                 Tabs::make('Tabs')->contained(false)
                 ->tabs([
                     Tabs\Tab::make('Setup')
@@ -132,19 +134,13 @@ class PageResource extends Resource
                                                 }
                                             }),
 
-                                        Fieldset::make('Roles')
-                                            ->schema([
-                                                Placeholder::make('Roles Selected Menus')
-                                                ->content( 'Desc')
-                                            ]),
-
                                     ]),
                                 Wizard\Step::make('Content')
                                     ->schema([
                                         Fieldset::make('Title and Categori')
                                         ->schema([
-                                            TextInput::make('title'),
-                                            Select::make('categori_id')->relationship('category', 'name')->preload()->searchable()->required(),
+                                            TextInput::make('title')->live(),
+                                            Select::make('categori_id')->relationship('category', 'name')->preload()->searchable()->required()->live(),
                                         ]),
 
                                         Hidden::make('created_by')->default(auth()->user()->id),
@@ -152,7 +148,7 @@ class PageResource extends Resource
 
                                         Fieldset::make('Active and Publish')
                                         ->schema([
-                                            DatePicker::make('publish_at')->label('Publish At'),
+                                            DatePicker::make('publish_at')->label('Tanggal Publish / Update Terakhir')->default(now()),
                                             ToggleButtons::make('is_active')->boolean()->label('Is Active')->inline(),
 
                                         ]),
@@ -160,7 +156,7 @@ class PageResource extends Resource
 
                             ])
                         ]),
-                    Tabs\Tab::make('Value Content')
+                    Tabs\Tab::make('Isi Content')
                         ->schema([
                             Fieldset::make('Value Content')->schema([
                                 Select::make('layout')
@@ -192,7 +188,10 @@ class PageResource extends Resource
 
                     ]),
                 //
-
+                Section::make('Tutorials')->icon('heroicon-o-document-text')->collapsed()->schema([
+                    Placeholder::make('Tutorials')
+                    ->content(new HtmlString('Tutorials : <a href="https://filamentphp.com/docs/2.x/components/forms/wizard" target="_blank" class="underline">Klik Link</a>')),
+                ]),
             ]);
     }
 
@@ -202,6 +201,7 @@ class PageResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('title'),
+                TextColumn::make('layout'),
                 TextColumn::make('created_at')->since()
             ])
             ->filters([

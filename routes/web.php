@@ -19,10 +19,10 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::prefix('/')->group(function () {
-    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('webVisitors');
     Route::get('/{slug}', [HomeController::class, 'show'])->name('show');
-    Route::get('/post/{slug}', [ListController::class, 'list'])->name('post.detail');
-    Route::get('/kelurahan/{slug}', [ListController::class, 'list_kelurahan']);
+    Route::get('/post/{slug}', [ListController::class, 'list'])->name('post.detail')->middleware('postVisitors');
+    Route::get('/kelurahan/{slug}', [ListController::class, 'list_kelurahan'])->middleware('postVisitors');
     // Route::get('/about', [HomeController::class, 'about'])->name('about');
     // Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
     // Route::get('/services', [HomeController::class, 'services'])->name('services');

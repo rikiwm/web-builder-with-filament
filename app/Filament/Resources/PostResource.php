@@ -22,6 +22,9 @@ use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Wizard;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Placeholder;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\KeyValue;
 use Filament\Forms\Form;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
@@ -33,6 +36,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Pboivin\FilamentPeek\Forms\Actions\InlinePreviewAction;
 use Illuminate\Support\Str;
+use Illuminate\Support\HtmlString;
 
 class PostResource extends Resource
 {
@@ -64,6 +68,7 @@ class PostResource extends Resource
             ]),
             Block::make('paragraph')->schema([
                 RichEditor::make('content')
+                ->disableGrammarly()
                     ->toolbarButtons([
                         'attachFiles',
                         'blockquote',
@@ -102,6 +107,16 @@ class PostResource extends Resource
                 ->label('route / URL / Button')
                 ->required(),   
             ])->columns(2),
+            Block::make('other')->label('Description')
+            ->schema([
+                Textarea::make('other')
+                ->label('Info')
+                ->autosize(),                
+            ])->columns(1),
+            Block::make('key')->label('key')
+            ->schema([
+                KeyValue::make('meta')              
+            ])->columns(1),
         ])
             ->columnSpanFull()
             ->collapsible();
@@ -112,14 +127,17 @@ class PostResource extends Resource
         return $form
             ->columns(1)
             ->schema([
-
+                Section::make('Tutorials')->icon('heroicon-o-document-text')->collapsed()->schema([
+                    Placeholder::make('Tutorials')
+                    ->content(new HtmlString('Tutorials : <a href="https://filamentphp.com/docs/2.x/components/forms/wizard" target="_blank" class="underline">Klik Link</a>')),
+                ]),
                 Wizard::make([
                     Wizard\Step::make('Post')
                     ->icon('heroicon-m-newspaper')
                     ->description('Pilih Menu untuk postingan')
                         ->schema([
 
-                            Select::make('menu_id')->required()->label('Menu')
+                            Select::make('menu_id')->required()->label('Menu')->helperText('Pilih Menu Sesuai Jenis Postingan')
                                 ->relationship(
                                     name: 'menu',
                                     modifyQueryUsing: fn (Builder $query) => $query->where('type', 'list'),

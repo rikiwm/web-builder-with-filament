@@ -20,35 +20,21 @@
     });
 
 </script>
-<script>
-    var menuBtn = document.getElementById('menu-btn');
-    var closeBtn = document.getElementById('close-btn');
-    var mobileMenu = document.getElementById('mobile-menu');
 
-    menuBtn.addEventListener('click', () => {
-        gsap.to(mobileMenu, { y: '1%', duration: 0.3, ease: 'power2.out' });
-
-    });
-
-    closeBtn.addEventListener('click', () => {
-        gsap.to(mobileMenu, { y: '-500', duration: 0.2, ease: 'power2.in' });
-
-    });
-</script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
 <script>
     function initSwiper() {
         console.log("Menginisialisasi Swiper...");
-        // Hapus instance Swiper sebelumnya
+        // Hapus instance Swiper before
         document.querySelectorAll(".swiper").forEach(swiperEl => {
             if (swiperEl.swiper) {
-                console.log("Menghapus instance Swiper sebelumnya...");
+                console.log("Swiper before...");
                 swiperEl.swiper.destroy(true, true);
             }
         });
-        // Inisialisasi Swiper untuk slider utama (jika ada)
+        // Inisialisasi Swiper 
         document.querySelectorAll(".mySwiper").forEach(swiperEl => {
-            console.log("Membuat instance Swiper baru untuk mySwiper...");
+            console.log("create instance Swiper");
             new Swiper(swiperEl, {
                 loop: true,
                 autoplay: {
@@ -72,7 +58,7 @@
 
         // Inisialisasi Swiper untuk thumbnail slider (jika ada)
         if (document.querySelector(".thumb-slider")) {
-            console.log("Membuat instance Swiper untuk thumbnail...");
+            console.log("create instance thumbnail...");
             new Swiper(".thumb-slider", {
                 spaceBetween: 10,
                 slidesPerView: 4,
@@ -106,16 +92,16 @@
             });
         }
 
-        console.log("Swiper berhasil diinisialisasi.");
+        console.log("Swiper berhasil init");
     }
 
     document.addEventListener("DOMContentLoaded", () => {
-        console.log("Memulai inisialisasi Swiper...");
+        console.log("Memulai ");
         initSwiper();
     });
 
     document.addEventListener("livewire:navigated", () => {
-        console.log("Inisialisasi ulang setelah navigasi...");
+        console.log("Init reload");
         initSwiper();
     });
 </script>

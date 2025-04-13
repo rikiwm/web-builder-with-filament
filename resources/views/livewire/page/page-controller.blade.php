@@ -276,20 +276,19 @@
                                 </p>
 
                             </div>
-                            <div
-                            class="col-span-3 w-full lg:col-span-3 border border-gray-200 dark:border-zinc-800 rounded-xl p-4 md:p-4 dark:backdrop-blur-sm">
+                            <div class="col-span-3 w-full lg:col-span-3 border border-gray-200 dark:border-zinc-800 rounded-xl p-4 md:p-4 dark:backdrop-blur-sm">
 
-                            <h2 class="text-gray-900 dark:text-white text-xl font-semibold mb-2">Start with
-                                laravel Design System</h2>
-                            <p class="text-sm font-normal text-gray-500 dark:text-gray-400 mb-1">Static
-                                websites Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae lorem
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae loremLorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae loremLorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae loremLorem ipsum dolor sit amet csquam, quae lorem
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae loremLorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae loremLorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae loremLorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae loremLorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae lorem
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae loremLorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae lorem
-                                of tools that even influence both web designers and developers.</p>
+                                <h2 class="text-gray-900 dark:text-white text-xl font-semibold mb-2">Start with
+                                    laravel Design System</h2>
+                                <p class="text-sm font-normal text-gray-500 dark:text-gray-400 mb-1">Static
+                                    websites Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae lorem
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae loremLorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae loremLorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae loremLorem ipsum dolor sit amet csquam, quae lorem
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae loremLorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae loremLorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae loremLorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae loremLorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae lorem
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae loremLorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae lorem
+                                    of tools that even influence both web designers and developers.</p>
 
-                        </div>
+                            </div>
                         </div>
                     </div>
 

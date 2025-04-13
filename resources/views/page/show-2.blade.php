@@ -23,7 +23,6 @@ $img = array_values($img);
                             <div class="flex flex-col justify-center items-center border bg-zinc-200/90 dark:bg-zinc-800/80 w-full h-32 lg:h-44 border-gray-200/20 dark:border-zinc-900 rounded-[14px] p-0 md:p-2 py-4 px-4 ">
                             
                                 <x-breadcumb.breadcumb>
-                                    <x-slot name="content">
                                         <li class="flex items-center gap-2">
                                             <a href="/" class="hover:text-on-surface-strong dark:hover:text-on-surface-dark-strong" wire:navigate>Home</a>
                                             <span aria-hidden="true">/</span>
@@ -33,7 +32,6 @@ $img = array_values($img);
                                             <span aria-hidden="true">/</span>
                                         </li>
                                         <li class="text-on-surface-strong font-bold dark:text-on-surface-dark-strong" aria-current="page">{{  Str::limit($title, 12, preserveWords: true); }}</li>
-                                    </x-slot>
                                 </x-breadcumb.breadcumb>
                                 </div>
                             <div class="flex justify-center items-center bg-white w-4/5 lg:w-3/4 h-22 lg:h-28 mx-auto border-b-teal-200/30 border-gray-200/20 dark:border-zinc-950 dark:bg-black rounded-[14px] 
@@ -70,9 +68,19 @@ $img = array_values($img);
                                                 </svg>
                                                 {{ $item['data']['title'] }}
                                             </a>
-                                        
+                                        @endif
+                                        @if ($item['type'] === 'key')
+                                        <li class=" border border-zinc-200 bg-zinc-500 dark:border-zinc-800 rounded-lg p-4 md:p-4 dark:bg-zinc-950/60 dark:backdrop-blur-sm">
+                                            <h2 class="text-gray-200 dark:text-white text-xl font-semibold mb-2">Start Here</h2>
+                                            @foreach ($item['data']['meta'] as $key => $value)
+                                            <p class="text-sm font-normal text-gray-300 dark:text-gray-400 mb-1">
+                                                {{ $key ?? '' }} {{ $value ?? '' }}
+                                            </p>
+                                            @endforeach
+                                        </li>
                                         @endif
                                     @endforeach
+
                                 </ul>
                             
                                 <div class="lg:col-span-3 col-span-3">
@@ -85,11 +93,15 @@ $img = array_values($img);
                                             role="tabpanel" 
                                             aria-label="{{ $key - 1 }}">
                                             <x-content-paragraph :content="$item['data']['content'] ?? ''" />
+                                            
                                         </div>
                                         @endif
                                     @endforeach
                                 </div>
                             </div> 
+
+                   
+
                         </div>
                     </x-slot>
                 </x-page.section-page>

@@ -1,4 +1,4 @@
-@props(['title' => '', 'datacount'=>'', 'model_view' => '','column'=>'lg:grid-cols-4 ','menu' => ''])
+@props(['title' => '', 'datacount'=>'', 'model_view' => '','column'=>'lg:grid-cols-4 ','desc' => ''])
 @php if ($model_view === 'tabel') {$column = 'grid-cols-1';} @endphp
 <div>
     <x-page.section-page>
@@ -8,9 +8,12 @@
                     <aside aria-label="Related articles" class="px-4 py-8 lg:py-2 lg:px-12 bg-zinc-50/20 dark:backdrop-blur-md dark:bg-transparent ">
                         <div class="justify-center ">
                             <h2 class="mb-8 text-2xl font-bold text-gray-900 dark:text-white">{{ Str::headline($title ?? '') }}</h2>
+                            {{-- <h2 class="mb-8 text-2xl font-bold text-gray-900 dark:text-white">{{ Str::headline( ?? '') }}</h2> --}}
                            <!-- ========== Start Content ========== -->
                                 @if ($title === 'blog' )
+
                                 <div class="grid gap-6 grid-cols-1 lg:grid-cols-4">
+
                                     @isset($top)                                        
                                     <article class="lg:col-span-3 group grid  rounded-xl grid-cols-1 md:grid-cols-8 overflow-hidden border border-zinc-100 hover:border-zinc-400 bg-surface-alt  text-on-surface dark:border-zinc-500/30 dark:bg-transparent dark:text-white">
                                         <!-- image -->
@@ -35,7 +38,7 @@
                                         </div>
                                     </article>
                                     @endisset
-                                    <div class="lg:col-span-1 border border-zinc-100 hover:border-zinc-400 lg:p-2 p-1 rounded-xl dark:border-zinc-500/30">
+                                    <div class="lg:col-span-1 border border-zinc-100 hover:border-zinc-200 dark:hover:border-zinc-800 lg:p-2 p-1 rounded-xl dark:border-zinc-500/30">
                                         <x-tabs.tabs-button>
                                             <x-slot name="action">
                                                 <button x-on:click="selectedTab = 'new'" 
@@ -53,13 +56,17 @@
                                                 <div x-cloak x-show="selectedTab === 'new'" id="tabpanelNew" role="tabpanel" aria-label="new">
                                                     @isset($data)
                                                     @forelse ($news as $d)
-                                                    <div class="mb-2 w-full max-w-2xl border-outline bg-white p-2 text-left dark:border-zinc-500/30 dark:bg-zinc-800/20 rounded-lg border" >
+                                                    <div class="mb-2 w-full max-w-2xl border-outline bg-white p-2 text-left dark:border-zinc-500/30 dark:bg-zinc-800/20 rounded-lg border hover:border-zinc-300 dark:hover:border-zinc-700" >
                                                         <div class="flex items-start gap-2 text-on-surface-strong dark:text-on-surface-dark-strong">
-                                                            <img src="https://penguinui.s3.amazonaws.com/component-assets/card-img-4.webp" class="size-16 rounded-md object-cover saturate-0 hover:saturate-50" alt="User avatar"/>
-                                                            <span class="text-xs font-bold">write a short paragraph about penguin
-                                                                <br>
-                                                                <a href="#" class="text-2xs font-extralight hover:underline focus:underline focus:outline-hidden text-zinc-500/50 dark:text-zinc-800">Read if bored</a>
-                                                            </span>
+                                                            <img src="{{ url('storage/' . $d->image ?? 'https://thumbs.dreamstime.com/b/web-324830810.jpg" class="size-16 rounded-md object-cover saturate-0 hover:saturate-50') }}" class="size-16  rounded-md object-cover  hover:scale-105" alt="User avatar"/>
+                                                            <div class="flex flex-col gap-2">
+                                                            <a href="#" class="text-xs font-base hover:underline focus:underline focus:outline-hidden text-zinc-500/90 dark:text-zinc-400 line-clamp-2">
+                                                                {{ $d->title }}
+                                                            </a>
+                                                            <p class="text-3xs font-light  text-zinc-500/50 dark:text-zinc-400"> {{ $d->created_at->locale('id')->diffForHumans() }}
+                                                            </p>
+                                                        </div>
+
                                                         </div>
                                                     </div>
                                                     @empty
@@ -101,13 +108,13 @@
                                 </div>
                                 @if ($datacount > $this->limit)
                                     <button wire:click="loadMore" wire:loading.attr="disabled"
-                                        class="btn btn-sm ">
+                                        class="bg-slate-100 rounded-md px-2 py-1 dark:bg-sky-400/20 dark:hover:bg-sky-900/90">
                                         <div wire:loading wire:target="loadMore">
                                         </div>
                                         Get in More
                                     </button>
                                 @else
-                                    <span class="text-muted">No More Data</span>
+                                    <span class="text-muted bg-slate-100 rounded-md px-2 py-1 dark:bg-sky-900/50 hover:bg-sky-900/50">No More Data</span>
                                 @endif
                            <!-- ========== End Content ========== -->
                         </div>

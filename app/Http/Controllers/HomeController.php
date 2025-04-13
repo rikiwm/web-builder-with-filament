@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Context;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Illuminate\Support\Benchmark;
+
 
 class HomeController extends Controller
 {
@@ -82,9 +84,7 @@ class HomeController extends Controller
         } catch (\InvalidArgumentException $e) {
             return redirect()->route('home')->with('error', $e->getMessage());
         }
-
         $cacheKey = 'post_'.$menu->type.'_'.$slug.'_'.$menu->id;
-
         $data = Cache::remember($cacheKey, 60, function() use ($postService, $menu, $slug) {
             return $postService->show($menu->type, $slug, $menu->id);
         });
@@ -93,9 +93,6 @@ class HomeController extends Controller
         if (!$category) {
             $category = Categori::query()->select('name','description')->get();
         }
-
-
-
         return view($data['view'],
             [
                 'category' => $category ?? null,
