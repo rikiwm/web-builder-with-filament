@@ -50,7 +50,7 @@ class AppPanelProvider extends PanelProvider
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
             ])
-            ->brandName('RIKIMUKHRA')
+            ->brandName('KOTO TANGAH')
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,

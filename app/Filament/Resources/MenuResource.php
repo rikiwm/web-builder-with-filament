@@ -12,12 +12,15 @@ use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Split;
 use Filament\Forms\Components\TextInput;
+
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
+use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -59,6 +62,7 @@ class MenuResource extends Resource
                                 'page' => 'page',
                                 'list' => 'list',
                                 'link' => 'link',
+                                'more' => 'website',
                             ])->placeholder('Pilih Tipe dari Menu Ex : List atau Page')->live(),
 
                         ]),
@@ -73,9 +77,9 @@ class MenuResource extends Resource
                             ->live(),
                             Select::make('model_view')->options([
                                 'card' => 'card',
-                                'tabel' => 'tabel',
+                                'table' => 'tabel',
                             ])
-                            ->disabled(fn (Get $get) => $get('type') !== 'list')
+                            ->disabled(fn (Get $get) => $get('type') !== 'list')->required(fn (Get $get) => $get('type') === 'list')
                             ->searchable()->label('List Card / Table ')->suffix('view')
                             ->helperText(new HtmlString('<a href="https://filamentphp.com/docs/2.x/components/forms/wizard" target="_blank" class="underline">Contoh </a>'))
                             ->placeholder('jika link maka manual url'),
@@ -93,7 +97,8 @@ class MenuResource extends Resource
             ->columns([
                 TextColumn::make('id')->width('1%'),
                 TextColumn::make('name'),
-                TextColumn::make('type')
+                ToggleColumn::make('is_visible')->label('Sembunyikan menu ??'),
+                BadgeColumn::make('type')
             ])
             ->filters([
                 //

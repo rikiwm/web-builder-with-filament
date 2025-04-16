@@ -74,7 +74,7 @@
     
     <div class="absolute inset-0 top-28 bg-gradient-to-t from-surface-dark/95 to-transparent">
         <div class="mt-8 lg:mt-8 mx-auto py-6 lg:py-12 space-y-1">
-            <img class="size-20 mx-auto mb-2 hover:animate-bounce opacity-90 "
+            <img class="size-16 mx-auto mb-2 transform transition duration-500 hover:scale-110 opacity-90 "
                 src="{{ asset('frontend/pdg.png') }}"
                 alt="logo">
           
@@ -99,11 +99,12 @@
             <form class="w-1/2 max-w-md mx-auto ">
                 <div class="relative rounded-xl">
                     <div class="text-center">
-                        <x-btn.search-button class="py-2"
+                        <livewire:search-content />
+                        {{-- <x-btn.search-button class="py-2"
                         x-data=""
                         x-on:click.prevent="$dispatch('open-modal', 'test')"
                        >
-                    </x-btn.search-button>
+                    </x-btn.search-button> --}}
                      </div>
                 </div>
             </form>

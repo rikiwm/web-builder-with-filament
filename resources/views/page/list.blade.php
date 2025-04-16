@@ -1,5 +1,4 @@
 @props(['url' => $title ?? null ])
-
 <x-layouts.guest>
     <div class="py-4 text-black/50 dark:text-white/50">
         <div class=" min-h-screen mt-2 lg:mt-0
@@ -66,10 +65,12 @@
                             @endisset
                         </div>
                     </x-page.section-slide>
-                    @if(isset($title) && $title != 'download')
-                    <livewire:list.list-controller :title="$title" datacount="{{ count($data) ?? 0 }}" model_view="{{ $model_view ?? 'asd' }}" />
-                    @else
-                    <livewire:list.doc-view :title="$title" datacount="{{ count($data) ?? 0 }}" model_view="{{ $model_view ?? 'asd' }}" />
+                    @if(isset($title))
+                        @if($model_view === 'table')
+                        <livewire:list.doc-view :title="$title" datacount="{{ count($data) ?? 0 }}" model_view="{{ $model_view ?? 'asd' }}" />
+                        @else
+                        <livewire:list.list-controller :title="$title" datacount="{{ count($data) ?? 0 }}" model_view="{{ $model_view ?? 'asd' }}" />
+                        @endif
                     @endif
                 </main>
             </div>

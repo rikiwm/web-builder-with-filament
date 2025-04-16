@@ -6,12 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ Str::of(url()->current())->chopStart(['https://', 'http://'])->chopEnd(['padang.go.id',':8000'])->basename()->headline()->append(' - ',$app_name['value'][0]['data']['desc'] ?? 'desc')}}</title>
-    {{-- <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" /> --}}
     <link href="https://fonts.cdnfonts.com/css/millunium" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+    @livewireStyles
 </head>
 <style>
 .card {
@@ -108,7 +106,7 @@
   
             <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-900 lg:my-8" />
             <div class="px-4 py-6 bg-zinc-50 dark:bg-zinc-950 md:flex  sm:text-center  md:items-center md:justify-between rounded-xl sm:justify-center">
-                <span class="text-sm text-gray-400 dark:text-gray-800 sm:text-center">Support by Diskominfo Padang © 2023 <a href="#">
+                <span class="text-sm text-gray-400 dark:text-gray-200 sm:text-center">Support by Diskominfo Padang © 2023 <a href="#">
                     {{  $copyright['value'][0]['data']['desc'] ?? 'desc' }} 
                 </a>. All Rights Reserved.
                 </span>

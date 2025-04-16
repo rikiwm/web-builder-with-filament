@@ -1,4 +1,5 @@
 @props(['data' => ''])
+
 <nav  x-data="{ mobileMenuIsOpen: false }" x-on:click.away="mobileMenuIsOpen = false"
     class="transition delay-100 duration-300 ease-in-out hover:bg-white/70  dark:hover:bg-black fixed z-30 w-full rounded-b-lg bg-gray-100/20 backdrop-blur-md border-b border-white/60 dark:bg-black/50 dark:border-gray-900 py-2 px-5">
     <div class="px-0 flex flex-wrap items-center justify-between mx-auto max-w-screen-xl w-full">
@@ -93,8 +94,17 @@
         </ul>
         <x-inc.header-nav>
             <x-inc.header-nav-li>
+                @php
+                $parent = isset($item->parent) && $item->parent->id === $item->parent_id;
+                @endphp
+                @if ($parent)
+                <li class=" group">
+                    <a href="{{ url(request()->segment(1)) }}" class=" block px-3 py-2  rounded md:bg-transparent text-sm capitalize md:p-0" aria-current="{{ url(request()->segment(1)) }}">Home
+                    </a>
+                </li>
+                @endif
                 @foreach ($data as $item)
-                    <x-inc.header-nav-li-a :navtitle="$item->name" :child="$item" :rute="$item->slug">
+                    <x-inc.header-nav-li-a :navtitle="$item->name" :child="$item" :rute="$item->slug" :type="$item->type">
                     </x-inc.header-nav-li-a>
                 @endforeach
             </x-inc.header-nav-li>

@@ -25,7 +25,7 @@ class ListController extends Controller
             ->whereHas('menu', function($query) use ($data) {
                 $query->where('slug', $data->menu->slug);
             })
-          ->limit(5)->get();
+          ->limit(5)->cursor();
             $currentUrl = $data->menu->slug ?? '';
             $viewer = PostVisitor::where('post_id', $data->id)->count();
            return view('page.show', compact('slug', 'data','title','currentUrl','top_in_list','viewer'));

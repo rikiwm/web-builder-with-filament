@@ -1,5 +1,7 @@
+@if ($type === 'more')
+    dd(1);
+@endif
 <x-layouts.guest class="">
-
     <div class="lg:py-0 py-2  text-black/50 dark:text-white/50">
         <div class=" min-h-screen
         justify-center selection:bg-[#03A56A] selection:text-white">
@@ -7,10 +9,10 @@
                 <main class="py-12">
 
                     <div class="py-2 md:py-4 w-full max-w-screen-2xl mx-auto">
-                        <div class="mb-4 flex flex-col justify-center items-center border bg-zinc-200 dark:bg-zinc-800/80 w-full h-52 lg:h-64 border-gray-200/20 dark:border-zinc-900 rounded-[14px] p-0 md:p-2  px-4">
+                        <div class="mb-4 flex flex-col justify-center items-center border bg-zinc-300 dark:bg-zinc-800/80 w-full h-52 lg:h-64 border-gray-200/20 dark:border-zinc-900 rounded-[14px] p-0 md:p-2  px-4">
                             <div class="flex justify-center items-center space-x-4">
                          
-                               @if($category->name == 'Pokja')
+                               @if($category == 'Pokja')
                                 <img src="{{ asset('frontend/pkk.png') }}" class="size-6 lg:size-10  rounded-full object-cover" alt="avatar"/>
                                 @endif
                                 <h1

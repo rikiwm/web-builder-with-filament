@@ -252,7 +252,7 @@
     </div>
     <!-- drawer init and toggle -->
 
-    <x-modal-cari focusable name="test">
+    {{-- <x-modal-cari focusable name="test">
         <div class="p-4 w-full max-w-screen dark:bg-zinc-900">
             <h5 id="drawer-top-label"
                 class="inline-flex items-center mb-4 text-base font-normal text-gray-500 dark:text-gray-400"><svg
@@ -273,9 +273,8 @@
             </button>
             <form action="">
                 <div class="block w-lg">
-                    <input type="search"
-                        class="text-center block w-full p-3 ps-10 text-sm text-sky-950 rounded-lg bg-white  focus:ring-zinc-500 focus:border-zinc-500 dark:bg-zinc-950/70 dark:placeholder-white dark:text-zinc-50 dark:focus:ring-zinc-100 ease-in-out dark:transition-colors"
-                        name="search" placeholder="Search" aria-label="search" />
+                    <livewire:search-content/>
+
                 </div>
             </form>
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -284,6 +283,6 @@
             </a>
         </div>
 
-    </x-modal-cari>
+    </x-modal-cari> --}}
 
 </x-layouts.guest>

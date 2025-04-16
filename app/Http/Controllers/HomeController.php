@@ -43,13 +43,7 @@ class HomeController extends Controller
         $section = cache()->remember('section', 1, function() {
             return SettingWeb::query()->where('status', '1')->where('key','section-1')->first();
         });
-        $berita = cache()->remember('berita', 60, function() {
-            return Post::query()->where('is_active', '1')
-                ->where('menu_id', '4')
-                ->orderBy('created_at', 'desc')
-                ->take(3)
-                ->get();
-        });
+
 
         $team = cache()->remember('setting_team', 1, function() {
             return SettingWeb::query()->where('status', '1')->where('key','team-section')->first();
@@ -59,7 +53,6 @@ class HomeController extends Controller
             'hero' => $hero,
             'section' => $section,
             'welcome' => $welcome,
-            'berita' => $berita,
             'team' => $team,
         ]);
     }
@@ -70,6 +63,12 @@ class HomeController extends Controller
         try {
             if (!$menu) {
                 throw new \InvalidArgumentException('Menu not found');
+            }
+
+            if ($menu->type === 'more') {  
+                return view('dw',[
+                    'menu' => $menu,
+                ]);
             }
 
             if ($menu->type === 'place') {
@@ -89,14 +88,66 @@ class HomeController extends Controller
             return $postService->show($menu->type, $slug, $menu->id);
         });
 
-        $category = Categori::query()->where('id', $data['data']['categori_id'] ?? null )->select('name','description')->first();
-        if (!$category) {
-            $category = Categori::query()->select('name','description')->get();
-        }
+        // $category = Categori::query()->where('id', $data['data']['categori_id'] ?? null )->select('name','description')->first();
+        // if (!$category) {
+        //     $category = Categori::query()->select('name','description')->get();
+        // }
+      
         return view($data['view'],
             [
-                'category' => $category ?? null,
+                'category' => $data->categori->name ?? null,
                 'title' => $data['title'] ?? '',
+                'type' => $menu['type'] ?? '',
+                'data' => $data['data'] ?? null,
+                'model_view' => $menu['model_view'] ?? null,
+            ]
+        );
+    }
+
+
+    public function web(Request $request)
+    {
+  
+        $menu = Menu::where('slug', $request->slug)->first();
+        try {
+            if (!$menu) {
+                throw new \InvalidArgumentException('Menu not found');
+            }
+
+            if ($menu->type === 'more') {  
+                return view('dw',[
+                    'menu' => $menu,
+                ]);
+            }
+
+            if ($menu->type === 'place') {
+                throw new \InvalidArgumentException('Unsupported menu type: '.$menu->type);
+            }
+            if ($menu->type === 'link') {
+                $url = Str::replace(Request::url(),'', $menu->slug);
+                return redirect('https://'.$url );
+            }
+            $postService = MenuFactory::make($menu->type);
+
+        } catch (\InvalidArgumentException $e) {
+            return redirect()->route('home')->with('error', $e->getMessage());
+        }
+        $cacheKey = 'post_'.$menu->type.'_'.$request->slug.'_'.$menu->id;
+        $data = Cache::remember($cacheKey, 60, function() use ($postService, $menu, $request) {
+            $slug = $request->slug;
+            return $postService->show($menu->type, $slug, $menu->id);
+        });
+
+        // $category = Categori::query()->where('id', $data['data']['categori_id'] ?? null )->select('name','description')->first();
+        // if (!$category) {
+        //     $category = Categori::query()->select('name','description')->get();
+        // }
+      
+        return view($data['view'],
+            [
+                'category' => $data->categori->name ?? null,
+                'title' => $data['title'] ?? '',
+                'type' => $menu['type'] ?? '',
                 'data' => $data['data'] ?? null,
                 'model_view' => $menu['model_view'] ?? null,
             ]

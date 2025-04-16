@@ -207,7 +207,7 @@ class PostResource extends Resource
                     ->schema([
                         Toggle::make('is_active')->required(),
                         Toggle::make('is_featured')->label('Featured'),
-                        DatePicker::make('published_at')->label('Published')->required()->inlineLabel(),
+                        DatePicker::make('published_at')->label('Published')->required()->inlineLabel()->default(now()),
 
                         // DateTimePicker::make('published_at')
                         // ->hidden(fn (Get $get) => $get('status') !== 'published'),

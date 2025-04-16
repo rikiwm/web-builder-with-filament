@@ -1,9 +1,8 @@
 @props(['title' => '', 'datacount'=>'', 'model_view' => '','column'=>'lg:grid-cols-4 ','menu' => ''])
 @php
-    if ($model_view === 'tabel') {$column = 'grid-cols-1';}
+    if ($model_view === 'table') {$column = 'grid-cols-1';}
 @endphp
 <div>
-    {{-- @dd($datacount) --}}
     <x-page.section-page>
         <x-slot name="content">
             <div class="py-0 md:py-1 max-w-screen-xl  mx-auto ">
@@ -86,7 +85,7 @@
                                 </div>
                                 @endif --}}
                                 <div class="grid {{ $column }} gap-6 lg:py-4 py-4">                        
-                                    @if ($model_view === 'tabel')
+                                    @if ($model_view === 'table')
                                     <div class="w-full min-w-screen">
                                         <div class="overflow-hidden w-full overflow-x-auto rounded-lg border border-outline dark:border-zinc-500">
                                             <table class="w-full rounded-md  text-left text-sm text-on-surface dark:text-on-surface-dark">

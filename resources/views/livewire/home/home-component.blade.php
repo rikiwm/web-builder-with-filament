@@ -30,9 +30,9 @@
                            @isset($welcome['value']) {{  $welcome['value'][0]['data']['sub_content'] ?? 'content' }} @endisset                            
                         </p>
                         <div class="mt-6 flex items-center justify-center gap-x-2 lg:justify-start">
-                            <a href="#"
+                            {{-- <a href="#"
                                 class="text-xs/4 font-semibold text-slate-700 dark:text-white">Selengkapnya
-                                <span aria-hidden="true">→</span></a>
+                                <span aria-hidden="true">→</span></a> --}}
                         </div>
                     </div>
                     <div
@@ -43,10 +43,8 @@
                         <img src="{{  url('storage/' . $welcome['value'][1]['data']['images'] ?? 'https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg') }} "
                             class="object-cover transition duration-700 ease-out group-hover:scale-105 rounded-md bg-white/5 ring-1 ring-white/10  hover:scale-125 mb-2"
                             alt="{{ $welcome['value'][1]['data']['images'] }}" />
-                        <a href="#"
-                            class="text-xs text-zinc-900 dark:text-white ">{{  $welcome['value'][2]['data']['desc'] ?? 'Nama' }} (Camat Koto tangah ) <span
-                                aria-hidden="true">→</span></a>
-                        
+                        <div class="text-xs text-zinc-900 dark:text-white ">{{  $welcome['value'][2]['data']['desc'] ?? 'Nama' }} ( Camat Koto tangah ) <span
+                                aria-hidden="true">→</span></div>
                         <!-- ========== End img and name ========== -->
                         @endisset    
                     </div>

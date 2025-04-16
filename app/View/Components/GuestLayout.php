@@ -25,14 +25,24 @@ class GuestLayout extends Component
         $social = cache()->remember('app_social', 60*60, function () {
             return SettingWeb::query()->where('key','social')->get();
         });
-
-        $nav = Cache::remember('nav_menu_guest',60, function () {
-            return Menu::where('parent_id', null)
-                ->with('children')->where('is_active', true)
+        $qq = Menu::query()->where('is_active', true);
+        if(request()->segment(1) == 'dasawisma' || request()->segment(1) == 'web') {
+            $web = (clone $qq)->where('is_visible', 0)->where('type', 'more')->first();
+            $nav = Cache::remember('nav_menu_app', 30, function () use ($qq, $web) {
+                return (clone $qq)->where('parent_id', $web->id)
+                    ->with('children','parent')
+                    ->orderBy('order','asc')
+                    ->get();
+            });
+        }else{
+            $nav = Cache::remember('nav_menu_guest',30, function () use ($qq) {
+                return (clone $qq)->where('parent_id', null)
+                ->with('children')
                 ->where('is_visible', 0)
                 ->orderBy('order','asc')
                 ->get();
-        });
+            });
+        }
 
         // $todayVisitors = WebVisitor::whereDate('visited_at', today())->count();
         // $monthlyVisitors = WebVisitor::whereMonth('visited_at', now()->month)

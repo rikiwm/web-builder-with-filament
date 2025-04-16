@@ -17,13 +17,13 @@ class PostFactory extends Factory
      */
     public function definition(): array
     {
-        $title = Str::headline(fake()->name());
+        $title = Str::headline(fake()->sentence(5));
         $slug = Str::slug($title);
         return [
             //
             'menu_id' => 4,
             'title' => $title,
-            'sub_title' => $title,
+            'sub_title' => fake()->sentence(3),
             'slug' => $slug,
             'content' => array(
                 [

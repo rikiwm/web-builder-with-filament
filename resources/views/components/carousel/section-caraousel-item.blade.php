@@ -41,7 +41,7 @@
             </p>
             <a href="{{ route('post.detail', $data->slug) }}" 
                 class="text-zinc-400 dark:text-zinc-300 hover:underline font-medium text-xs/4 inline-flex items-center justify-end">Read
-                more
+                more {{ $data->id ?? '' }} {{ $data->count() ?? '' }}
                 <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"

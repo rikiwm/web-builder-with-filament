@@ -8,30 +8,21 @@ use Livewire\Attributes\Lazy;
 
 class Swipper extends Component
 {
-    public $d;
-
-
-    public function placeholder()
+   
+    protected function query()
     {
-        return <<<'HTML'
-        <div>
-            <!-- Loading spinner... -->
-            <svg>...</svg>
-        </div>
-        HTML;
+       return Post::where('is_active', 1)
+        ->where('categori_id', 1)
+        ->with(['user','categori','menu']);
     }
+ 
 
     public function render()
     {
-        
-        $this->d = Post::where('is_active', 1)
-            ->where('categori_id', 1)
-            ->with(['user','categori','menu'])
-            ->orderBy('created_at', 'desc')
-            ->get();
-
+        $posts = $this->query()->limit(5)->get();
+    
         return view('livewire.list.swipper',[
-            'data' => $this->d
+            'data' => $posts
         ]);
     }
 }

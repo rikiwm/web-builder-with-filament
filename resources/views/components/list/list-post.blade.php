@@ -1,5 +1,6 @@
 @props(['data' => '', 'limit' => '', 'title' => null, 'class' => '','link' => null,'class' => 'col-span-1'])
 @php
+try {
     $img = array_filter($data['content'], fn($content) => $content['type'] === 'image');
     $img = array_map(function ($content) {
         return [
@@ -10,6 +11,10 @@
         ];
     }, $img);
     $img = array_values($img);
+} catch (\Exception $th) {
+    //throw $th;
+}
+  
 @endphp
 
 {{-- <article class="max-w-sm mx-auto {{ $class }}">

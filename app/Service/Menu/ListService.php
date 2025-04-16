@@ -12,7 +12,7 @@ class ListService implements MenuInterface
         $data = Post::query()
         ->whereHas('menu', fn ($q) => $q->where('type', 'list'))
         ->where('is_active', 1)->orderBy('created_at','desc')
-        ->where('menu_id', $id)->get();
+        ->where('menu_id', $id)->with('categori','menu')->get();
             return [
                 'title' => $slug,
                 'data' => $data,

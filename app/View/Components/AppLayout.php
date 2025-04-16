@@ -15,13 +15,13 @@ class AppLayout extends Component
     public function render(): View
     {
         $nav = Cache::remember('nav_menu_app', 60, function () {
-            return Menu::where('parent_id', null)
+            return Menu::where('parent_id', 14)
                 ->with('children')->where('is_active', true)
                 ->orderBy('order','asc')
                 ->get();
         });
         return view('layouts.app',[
-            // 'nav' => $nav
+            'nav' => $nav
         ]);
     }
 }

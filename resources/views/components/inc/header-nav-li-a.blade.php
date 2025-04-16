@@ -2,27 +2,35 @@
     'navtitle' => '',
     'child' => '',
     'rute' => '',
+    'type' => '',
     'active' => request()->url() == url($rute) ? 'text-sky-900/90 dark:text-gray-400 font-semibold dark:bg-sky-800/20 py-2 space-x-4' : 'dark:text-slate-400 text-zinc-600 font-normal',
     'class' => 'grid-cols',
 ])
 @php
     $class = count($child->children) >= 1 ? ($class = 'grid-cols-3') : 'grid-cols-1';
     $place = $child->type == 'place' ? ($place = true) : false;
+    $parent = isset($child->parent) && $child->parent->id === $child->parent_id;
 @endphp
 
 <li class=" group">
+    @if ($parent)
+        <a href="{{ url(request()->segment(1),$rute ?? '') }}" class=" block px-3 py-2 {{ $active }} rounded md:bg-transparent text-sm capitalize md:p-0" aria-current="{{ url($rute) }}"> {{ $navtitle }}
+        </a>
+    @else
+        
     <a @if($child->type == 'link')  href="{{ url($rute) }}" target="_blank" @elseif (!$place || $rute == 'home' || $child->type == 'page' ) href="{{ url($rute) }}" wire:navigate  @endif 
         class=" block px-3 py-2 {{ $active }} rounded md:bg-transparent text-sm capitalize md:p-0" aria-current="{{ $rute }}">
-        @if ($child->slug == 'tp-pkk')
-        <span class="relative flex size-2 -mb-2 items-center justify-center top-0 left-10">
+        @if ($child->slug == 'dasawisma')
+        {{-- <span class="relative flex size-2 -mb-2 items-center justify-center top-0 left-10">
             <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-zinc-400 opacity-75 "></span>
             <span class="relative inline-flex size-1.5 rounded-full bg-zinc-500"></span>
 
-        </span>
+        </span> --}}
         @endif
      
         {{ $navtitle }}
         </a>
+    @endif
     @if ($child->children->isNotEmpty() && $place)
         <div class="dropdown-content absolute left-0 right-0 justify-center mx-auto mt-5 w-full  max-w-screen-md  bg-gray-100/80 dark:bg-black/80  shadow-lg rounded-b-xl ">
             <div class="grid px-4 gap-4 py-4 mx-auto  text-gray-900 dark:text-white md:{{ $class }} md:px-6">

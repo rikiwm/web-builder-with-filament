@@ -22,6 +22,10 @@ class ListPosts extends ListRecords
     public function getTabs(): array
     {
         $menu = Menu::where('type', 'list')->where('is_active', 1)->get();
+        if (!$menu) {
+            return [];
+        }
+        $tabs = [];
         foreach ($menu as $item) {
             $tabs[$item->name] = Tab::make()->query(fn ($query) => $query->where('menu_id', $item->id));
         }

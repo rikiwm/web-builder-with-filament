@@ -55,8 +55,8 @@
                 
                 @elseif($data['layout'] === 'model-2')
                     <h1 class="mb-4 text-5xl font-semibold text-black dark:text-white md:text-2xl lg:text-4xl text-center">
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r to-zinc-500 from-sky-900">
-                        Pertanyaan sering di ajukan
+                    <span class="text-transparent bg-clip-text bg-gradient-to-b to-zinc-500 from-sky-300">
+                        Pertanyaan dan Jawaban
                     </span>
                     </h1>
                     <div x-data="{ selectedAccordionItem: null }" class="w-full overflow-hidden rounded-lg border border-zinc-200 text-zinc-800 dark:border-zinc-600/30 dark:backdrop-blur-md dark:text-gray-400">
@@ -67,7 +67,7 @@
                                         class="flex w-full items-center justify-between gap-4 bg-surface-alt p-4 text-left underline-offset-2 hover:bg-surface-alt/75 focus-visible:bg-surface-alt/75 focus-visible:underline focus-visible:outline-hidden dark:bg-surface-dark-alt dark:hover:bg-surface-dark-alt/75 dark:focus-visible:bg-surface-dark-alt/75"
                                         aria-controls="accordionItem{{ $key }}"
                                         x-on:click="selectedAccordionItem = selectedAccordionItem === '{{ $key }}' ? null : '{{ $key }}'"
-                                        x-bind:class="selectedAccordionItem === '{{ $key }}' ? 'text-zinc-900 dark:text-zinc-50 font-bold ' : 'text-zinc-600 dark:text-zinc-400 font-medium'"
+                                        x-bind:class="selectedAccordionItem === '{{ $key }}' ? 'text-zinc-900 dark:text-zinc-50 font-bold bg-zinc-300/80 dark:bg-zinc-800' : 'text-zinc-600 dark:text-zinc-400 font-medium'"
                                         x-bind:aria-expanded="selectedAccordionItem === '{{ $key }}' ? 'true' : 'false'">
                                         {{ $item['data']['title'] }}
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor" class="size-5 shrink-0 transition"
@@ -282,11 +282,7 @@
                                     laravel Design System</h2>
                                 <p class="text-sm font-normal text-gray-500 dark:text-gray-400 mb-1">Static
                                     websites Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae lorem
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae loremLorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae loremLorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae loremLorem ipsum dolor sit amet csquam, quae lorem
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae loremLorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae loremLorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae loremLorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae loremLorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae lorem
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae loremLorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae lorem
-                                    of tools that even influence both web designers and developers.</p>
+                                </p>
 
                             </div>
                         </div>
